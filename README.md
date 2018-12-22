@@ -16,11 +16,11 @@ You will also see any lint errors in the console.
 
 open an electron window on the desktop
 
-### 'npm run launch'
+### `npm run launch`
 
 it combines both of the previous command, it runs the react server and open a desktop window (you need to refrech the window when the server is fully loaded)
 
-### 'npm install (important❗️️️❗️❗️)'
+### `npm install (important❗️️️❗️❗️)
 run this command on the terminal to install dependencies "npm install"
 
 ## Learn More
