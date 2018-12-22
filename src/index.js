@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux'
+import Layout from './connect.config';
+import store from "./store";
+import './styles/index.css';
+import 'antd/dist/antd.css'
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+/**
+ * redering the app after wraping the Layout component into 
+ * a store provider. 
+ * the provider pass the store to all the child component using props,
+ * this way all the child components will have access to
+ */
+ReactDOM.render(<Provider store={store}>
+                <Layout />
+                </Provider>, document.getElementById('root'));
+
+
