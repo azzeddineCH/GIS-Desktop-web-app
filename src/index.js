@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import Layout from './connect.config';
 import store from "./store";
-import './styles/index.css';
+
+import './styles/index.scss';
 import 'antd/dist/antd.css'
 
 
@@ -14,7 +15,7 @@ import 'antd/dist/antd.css'
  * this way all the child components will have access to
  */
 ReactDOM.render(<Provider store={store}>
-                <Layout />
+                <Layout/>  
                 </Provider>, document.getElementById('root'));
 
 

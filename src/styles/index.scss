@@ -1,0 +1,52 @@
+$accent : #43425D;
+$secondary_accent: #F0F0F7;
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;  
+}
+
+#root{
+  height: 100%;
+}
+
+#mapPanel{
+  height: 100%;
+  background: $secondary_accent;
+
+}
+
+#map{
+  height: 100%;
+  width: 100%;
+  background: $secondary_accent;
+}
+
+#uploadButton{
+    position: absolute;
+    margin: 40vh 30vw;
+}
+
+#header{
+ align-items: flex-end;
+ background: white;
+ padding: 0%;
+ margin: 0%
+}
+
+.siders{
+  background: $accent
+  
+}
+
+.hidedButton{
+  background: white;
+  border: white;
+  box-shadow: 0 0 0 white
+
+}
+

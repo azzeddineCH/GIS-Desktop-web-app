@@ -1,14 +1,12 @@
 import {combineReducers ,createStore} from 'redux' ;
-import dummy_reducer from "./reducer/reducer_example";
+import mapReducer from "./reducer/mapReducer";
 
 
 /**
  * an object that hold the default state of the app
  */
 export const defaultState ={
-    dummy_value:{
-        message : ""
-    }
+   map: null,
   };
 
 
@@ -17,7 +15,9 @@ export const defaultState ={
    * a one global reducer that will change the state of the store 
    */
 const rootReducer = combineReducers({
-      dummy_value:dummy_reducer
+     map: mapReducer,
+  
+  
   });
 
 

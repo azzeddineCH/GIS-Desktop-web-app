@@ -1,6 +1,6 @@
 import {connect} from 'react-redux' ;
 import {bindActionCreators} from 'redux' 
-import dummy_action from './action/action_example';
+import onMapImported from './action/onMapImported';
 import App from "./component/App";
 
 
@@ -11,7 +11,7 @@ import App from "./component/App";
  */
 function mapDispatchToProps(dispatcher){
     return bindActionCreators({ 
-        dummy_action
+        onMapImported
     },dispatcher);
 }
 
