@@ -23,7 +23,7 @@ it combines both of the previous command, it runs the react server and open a de
 ### `npm install (important❗️️️❗️❗️)`
 run this command on the terminal to install dependencies "npm install"
 if electron installation error occured use: sudo npm install electron --save-dev --save-exact --unsafe-perm=true --allow-root
-install node-sass using: sudo npm install -f node-sass
+install node-sass using: sudo npm install --save --unsafe-perm node-sass
 
 ## Learn More
 

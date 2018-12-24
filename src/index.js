@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import Layout from './connect.config';
 import store from "./store";
 
+
 import './styles/index.scss';
 import 'antd/dist/antd.css'
 
