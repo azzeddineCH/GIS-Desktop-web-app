@@ -1,4 +1,4 @@
-export default function onMapImported(path){
+export default function onMapDeleted(path){
    
     return { 
              type : "DELETE_MAP",

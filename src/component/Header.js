@@ -2,29 +2,35 @@ import React  from 'react';
 import { Layout } from 'antd';
 import { Button , Icon} from 'antd';
 import { ToggleGroup,DigitizeButton } from "@terrestris/react-geo"
-
+import NewLayerDialog from "./NewLayerDialog"
 export default class Header extends React.Component {
-
-
-  handleClick(e){
-
-    // show the dialog box to add layer 
-    // trigger the action to add a layer with name and type
-
+  constructor(props) {
+    super(props);
+    this.onAddLayerClicked = this.onAddLayerClicked.bind(this)
   }
+
+    onAddLayerClicked(){
+
+      this.props.onNewLayerDialogStateChenged(true);
+
+    }
+
+   
 
   render() {
     const Header = Layout.Header;
+    
     return(
       <Header id="header">
       { this.props.store.map ? 
-            
+            <div>
                 <ToggleGroup>
                       <Button
                             className = "hidedButton"
                             name="addLayer"
                             type="dashed"  
-                            onClick={this.handleClick} 
+                            map={this.props.store.map}
+                            onClick={this.onAddLayerClicked} 
                         >
                         <Icon type="diff" />
                             Add Layer
@@ -32,8 +38,9 @@ export default class Header extends React.Component {
                       <DigitizeButton
                                 className = "hidedButton"
                                 name="drawPolygon"
+                                digitizeLayerName={this.props.store.layersTree.slectedMapLayer.name}
                                 map={this.props.store.map}
-                                drawType="Polygon"
+                                drawType={this.props.store.layersTree.slectedMapLayer.type}
                                 type="dashed" 
                             
                         >
@@ -43,6 +50,7 @@ export default class Header extends React.Component {
                       <DigitizeButton
                                 className = "hidedButton"
                                 name="edit"
+                                digitizeLayerName={this.props.store.layersTree.slectedMapLayer.name}
                                 map={this.props.store.map}
                                 editType="Edit"
                                 type="dashed" 
@@ -53,6 +61,7 @@ export default class Header extends React.Component {
                       <DigitizeButton
                                 className = "hidedButton"
                                 name="delete"
+                                digitizeLayerName={this.props.store.layersTree.slectedMapLayer.name}
                                 map={this.props.store.map}
                                 editType="Delete"
                                 type="dashed" 
@@ -63,13 +72,19 @@ export default class Header extends React.Component {
                       <DigitizeButton
                                 className = "hidedButton"
                                 name="drag"
+                                digitizeLayerName={this.props.store.layersTree.slectedMapLayer.name}
                                 map={this.props.store.map}
                                 type="dashed" 
                         >
                            <Icon type="drag" />
                               Drag
                       </DigitizeButton>
-                </ToggleGroup>    
+                </ToggleGroup>
+                 <NewLayerDialog
+                 {...this.props}
+                 />
+                 </div>
+
        : <br/> 
       }
       </Header>

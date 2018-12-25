@@ -12,9 +12,9 @@ export default class App extends React.Component {
   render() {
     return(
       <Layout id="root">
-      <LayerBar/>
+      <LayerBar {...this.props}/>
       <Layout>
-          <Header   {...this.props}/>
+            <Header  {...this.props}/>
             <MapPanel {...this.props} />
       </Layout>
       <ToolBar/>  

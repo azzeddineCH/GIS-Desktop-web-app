@@ -1,6 +1,10 @@
 import {connect} from 'react-redux' ;
 import {bindActionCreators} from 'redux' 
 import onMapImported from './action/onMapImported';
+import onMapDeleted from './action/onMapDeleted';
+import onNewLayerDialogStateChenged from './action/onNewLayerDialogStateChenged';
+import onMapLayerAdded from './action/onMapLayerAdded';
+import onSelectedLayerChanged from './action/onSelectedLayerChanged';
 import App from "./component/App";
 
 
@@ -11,7 +15,11 @@ import App from "./component/App";
  */
 function mapDispatchToProps(dispatcher){
     return bindActionCreators({ 
-        onMapImported
+        onMapImported,
+        onMapDeleted,
+        onNewLayerDialogStateChenged,
+        onMapLayerAdded,
+        onSelectedLayerChanged
     },dispatcher);
 }
 

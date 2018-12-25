@@ -1,10 +1,12 @@
-import { defaultState} from '../store'
+import { defaultState} from '../../store'
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import {getCenter} from 'ol/extent.js';
 import ImageLayer from 'ol/layer/Image.js';
 import Projection from 'ol/proj/Projection.js';
 import Static from 'ol/source/ImageStatic.js';
+import VectorLayer from 'ol/layer/Vector.js';
+import VectorSource from 'ol/source/Vector.js';
 
 export default function importMap(state= defaultState.map, action){
  
@@ -20,12 +22,17 @@ export default function importMap(state= defaultState.map, action){
     let map = new Map({
         layers: [
           new ImageLayer({
+            name: 'map',
             source: new Static({
               url: path,
               projection: projection,
               imageExtent: extent
             })
-          })
+          }),
+          new VectorLayer({
+            name: 'sketch',
+            source: new VectorSource({}),
+        })
         ],
         target: 'map',
         view: new View({

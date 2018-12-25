@@ -1,12 +1,22 @@
-import {combineReducers ,createStore} from 'redux' ;
-import mapReducer from "./reducer/mapReducer";
-
-
+import {combineReducers ,createStore, applyMiddleware, compose} from 'redux' ;
+import mapReducer from "./reducer/mapReducers/mapReducer";
+import layersReducer from "./reducer/layersReducers/layersReducer";
+import setNewLayerDialogState from "./reducer/UIReducers/setNewLayerDialogState";
+import MapLayerObject from './data/MapLayerObject'
+import multi from 'redux-multi'
 /**
  * an object that hold the default state of the app
  */
+
+const defaultLayer = new MapLayerObject("sketch","Polygon")
+
 export const defaultState ={
    map: null,
+   layersTree:{
+      mapLayers:[defaultLayer],
+      slectedMapLayer: defaultLayer
+   },
+   newLayerDialogState: false,
   };
 
 
@@ -16,7 +26,8 @@ export const defaultState ={
    */
 const rootReducer = combineReducers({
      map: mapReducer,
-  
+     layersTree: layersReducer,
+     newLayerDialogState: setNewLayerDialogState,
   
   });
 
@@ -25,11 +36,12 @@ const rootReducer = combineReducers({
    *  a refrence to the app sotore is created by matching 
    *  the state with the reducers object 
    */
+
 const store = createStore(rootReducer,
                           defaultState,
+                          compose(applyMiddleware(multi))
                           /** 
                            * the next line add the redux Chrome extention tp the DevTools
                            * You can see the state of the store at the redux Tab on the right panel
-                           */
-                          window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+                           */);
 export default store  ;

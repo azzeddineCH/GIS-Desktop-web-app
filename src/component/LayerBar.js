@@ -1,29 +1,32 @@
 import React  from 'react';
 import { Layout } from 'antd';
-
+import { LayerTree } from '@terrestris/react-geo';
 export default class LayerBar extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      collapse :false,
-    };
+    this.handleLayerClick = this.handleLayerClick.bind(this)
   }
 
-   onCollapse = (collapsed) => {
-    console.log(collapsed);
-    this.setState({ collapsed });
+  handleLayerClick(e){
+
+    let layerName  = e.target.innerHTML;
+    this.props.onSelectedLayerChanged(layerName)
+    
   }
+ 
   render() {
     const Sider  = Layout.Sider;
     return(
       <Sider 
-      className="siders"
-      id='above'
-      collapsible
-      collapsed={this.state.collapsed}
-      onCollapse={this.onCollapse}>
-         
+          id='layerTree'>
+           { this.props.store.map ? 
+          <LayerTree
+            onClick={this.handleLayerClick}
+            map={this.props.store.map}
+        /> :
+          <br/>}
+       
       </Sider>
     );
   }

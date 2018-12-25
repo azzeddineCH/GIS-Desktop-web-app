@@ -12,7 +12,7 @@ export default class ToolBar extends React.Component {
   render() {
     const ToolBarContainer  = Layout.Sider;
     return(
-      <ToolBarContainer className="siders">
+      <ToolBarContainer>
 
       </ToolBarContainer>
     );
