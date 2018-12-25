@@ -1,8 +1,7 @@
 import React  from 'react';
 import { Layout } from 'antd';
-import { Button , Icon} from 'antd';
-import { ToggleGroup,DigitizeButton } from "@terrestris/react-geo"
 import NewLayerDialog from "./NewLayerDialog"
+import MapLayerTools from "./MapLayerTools"
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -24,66 +23,22 @@ export default class Header extends React.Component {
       <Header id="header">
       { this.props.store.map ? 
             <div>
-                <ToggleGroup>
-                      <Button
-                            className = "hidedButton"
-                            name="addLayer"
-                            type="dashed"  
+                  { this.props.store.layersTree.mapLayers.map(element => {
+                    if(element.name == this.props.store.layersTree.slectedMapLayer.name )
+                    return(
+                      <MapLayerTools
+                            disabled={this.props.store.layersTree.slectedMapLayer.name == "sketch" ? true : false}
+                            layerName={element.name}
                             map={this.props.store.map}
-                            onClick={this.onAddLayerClicked} 
-                        >
-                        <Icon type="diff" />
-                            Add Layer
-                      </Button>  
-                      <DigitizeButton
-                                className = "hidedButton"
-                                name="drawPolygon"
-                                digitizeLayerName={this.props.store.layersTree.slectedMapLayer.name}
-                                map={this.props.store.map}
-                                drawType={this.props.store.layersTree.slectedMapLayer.type}
-                                type="dashed" 
-                            
-                        >
-                           <Icon type="radar-chart" />
-                            Draw
-                      </DigitizeButton>
-                      <DigitizeButton
-                                className = "hidedButton"
-                                name="edit"
-                                digitizeLayerName={this.props.store.layersTree.slectedMapLayer.name}
-                                map={this.props.store.map}
-                                editType="Edit"
-                                type="dashed" 
-                        >
-                           <Icon type="edit" />
-                            Edit
-                      </DigitizeButton>
-                      <DigitizeButton
-                                className = "hidedButton"
-                                name="delete"
-                                digitizeLayerName={this.props.store.layersTree.slectedMapLayer.name}
-                                map={this.props.store.map}
-                                editType="Delete"
-                                type="dashed" 
-                        >
-                            <Icon type="delete" />
-                              Delete
-                      </DigitizeButton>
-                      <DigitizeButton
-                                className = "hidedButton"
-                                name="drag"
-                                digitizeLayerName={this.props.store.layersTree.slectedMapLayer.name}
-                                map={this.props.store.map}
-                                type="dashed" 
-                        >
-                           <Icon type="drag" />
-                              Drag
-                      </DigitizeButton>
-                </ToggleGroup>
+                            drawType={element.type}
+                            onAddLayerClicked={this.onAddLayerClicked}
+                      />
+                  )})}
+                      
                  <NewLayerDialog
                  {...this.props}
                  />
-                 </div>
+              </div>
        : <br/> 
       }
       </Header>

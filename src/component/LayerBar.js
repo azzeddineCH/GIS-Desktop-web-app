@@ -8,10 +8,9 @@ export default class LayerBar extends React.Component {
     this.handleLayerClick = this.handleLayerClick.bind(this)
   }
 
-  handleLayerClick(e){
-
-    let layerName  = e.target.innerHTML;
-    this.props.onSelectedLayerChanged(layerName)
+  handleLayerClick(selectedKeys, e){
+    
+    this.props.onSelectedLayerChanged(e.selectedNodes.length > 0 ? e.selectedNodes[0].props.title : "sketch")
     
   }
  
@@ -22,7 +21,7 @@ export default class LayerBar extends React.Component {
           id='layerTree'>
            { this.props.store.map ? 
           <LayerTree
-            onClick={this.handleLayerClick}
+            onSelect={this.handleLayerClick}
             map={this.props.store.map}
             filterFunction={(layer) => layer.get('name') != 'sketch' && layer.get('name') != 'map' }
         /> :

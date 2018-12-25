@@ -39,8 +39,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer,
                           defaultState,
-                          compose(applyMiddleware(multi),
-                          window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+                          compose(applyMiddleware(multi))
                           /** 
                            * the next line add the redux Chrome extention tp the DevTools
                            * You can see the state of the store at the redux Tab on the right panel
