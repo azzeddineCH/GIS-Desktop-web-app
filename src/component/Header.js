@@ -9,11 +9,11 @@ export default class Header extends React.Component {
     this.onAddLayerClicked = this.onAddLayerClicked.bind(this)
   }
 
-    onAddLayerClicked(){
+  onAddLayerClicked(){
+  
+    this.props.onNewLayerDialogStateChenged(true);
 
-      this.props.onNewLayerDialogStateChenged(true);
-
-    }
+  }
 
    
 
@@ -84,7 +84,6 @@ export default class Header extends React.Component {
                  {...this.props}
                  />
                  </div>
-
        : <br/> 
       }
       </Header>

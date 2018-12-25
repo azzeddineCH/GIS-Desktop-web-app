@@ -24,6 +24,7 @@ export default class LayerBar extends React.Component {
           <LayerTree
             onClick={this.handleLayerClick}
             map={this.props.store.map}
+            filterFunction={(layer) => layer.get('name') != 'sketch' && layer.get('name') != 'map' }
         /> :
           <br/>}
        
