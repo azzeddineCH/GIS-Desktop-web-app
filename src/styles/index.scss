@@ -1,6 +1,16 @@
 $accent : #43425D;
 $secondary_accent: #F0F0F7;
 
+$sider : #43425D;
+$siderbutton : #A5A4BF;
+$siderdark : #3B3B53;
+$headericons:#607D8B;
+$buttons:#2196F3;
+$popupsicons: #414141;
+$textdark : #708A97;
+$text : white;
+
+
 body {
   margin: 0;
   padding: 0;
@@ -27,8 +37,8 @@ body {
 }
 
 #uploadButton{
-    position: absolute;
-    margin: 40vh 30vw;
+    position: relative;
+    margin: auto;
 }
 
 #header{
@@ -51,3 +61,64 @@ body {
 
 }
 
+.tool_bar{
+  background-color: $sider;
+}
+
+.tools{
+  color: $siderbutton;
+  width: 60px;
+
+}
+
+
+#symbologypanel{
+  background-color: $text;
+  
+}
+
+.panel_title{
+  color: $textdark;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.panel_text{
+  color : $textdark;
+  margin: 20px;
+}
+
+.flex_div{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.selectors{
+    margin: 25%;
+}
+
+.tab{
+  margin: 20px;
+}
+
+
+.toggleButton {
+    padding: 5px;
+    border: 1px solid #DFE8F3;
+    //margin: 5px;
+    font-size: 12px;
+    width: 200px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.toggleButton:hover {
+    border-color: #1890ff;
+}
+
+.colorScalePickerContainer{
+  max-height: 300px;
+  background: white;
+}
