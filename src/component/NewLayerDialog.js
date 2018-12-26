@@ -71,7 +71,7 @@ export default class NewLayerDialog extends React.Component {
                          onChange={this.handleLayerTypeChange}
                          defaultValue={this.state.layerType}> 
                                     <Option value="Point">Point</Option>
-                                    <Option value="Line">Line</Option>
+                                    <Option value="LineString">Line</Option>
                                     <Option value="Polygon">Polygon</Option>
                     </Select>
             </span>
