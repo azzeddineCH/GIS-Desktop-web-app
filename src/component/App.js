@@ -20,9 +20,15 @@ export default class App extends React.Component {
   }
 
   ChangeSymbologyPanelState(){
-    this.setState({
-      ShowSymbologyPanel:!this.state.ShowSymbologyPanel,
-    });
+    if(this.props.store.layersTree.slectedMapLayer.name == "sketch"){
+      this.setState({
+        ShowSymbologyPanel:false,
+      });
+    } else {
+      this.setState({
+        ShowSymbologyPanel:!this.state.ShowSymbologyPanel,
+      });
+    }
   }
 
   render() {
@@ -32,7 +38,7 @@ export default class App extends React.Component {
         <Layout>
           <LayerBar {...this.props}/>
           <MapPanel {...this.props} />
-          {this.state.ShowSymbologyPanel && <SymbologyPanel/>}
+          {this.state.ShowSymbologyPanel && <SymbologyPanel action={this.ChangeSymbologyPanelState} {...this.props}/>}
           <ToolBar action={this.ChangeSymbologyPanelState}/>
         </Layout>
       </Layout>
