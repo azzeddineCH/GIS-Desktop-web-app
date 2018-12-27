@@ -11,13 +11,15 @@ export default class App extends React.Component {
 
   render() {
     return(
-      <Layout id="root">
-      <LayerBar {...this.props}/>
-      <Layout>
-            <Header  {...this.props}/>
-            <MapPanel {...this.props} />
-      </Layout>
-      <ToolBar/>  
+      <Layout 
+        className="root">
+          <Header  {...this.props}/>
+          <Layout className="root"
+           hasSider={true}>
+               <LayerBar {...this.props}/>
+                <MapPanel {...this.props}/>
+                <ToolBar/>    
+          </Layout>
       </Layout>
     );
   }

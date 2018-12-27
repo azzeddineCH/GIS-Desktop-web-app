@@ -2,6 +2,7 @@ import React  from 'react';
 import { Layout } from 'antd';
 import NewLayerDialog from "./NewLayerDialog"
 import MapLayerTools from "./MapLayerTools"
+import { Card } from 'antd';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -18,12 +19,13 @@ export default class Header extends React.Component {
 
   render() {
     const Header = Layout.Header;
+  
     
     return(
       <Header id="header">
-      { this.props.store.map ? 
-            <div>
-                  { this.props.store.layersTree.mapLayers.map(element => {
+            <h2 id="projectTitle">SIGA Project</h2>
+      { this.props.store.map ?
+              this.props.store.layersTree.mapLayers.map(element => {
                     if(element.name == this.props.store.layersTree.slectedMapLayer.name )
                     return(
                       <MapLayerTools
@@ -33,14 +35,12 @@ export default class Header extends React.Component {
                             drawType={element.type}
                             onAddLayerClicked={this.onAddLayerClicked}
                       />
-                  )})}
-                      
-                 <NewLayerDialog
-                 {...this.props}
-                 />
-              </div>
-       : <br/> 
+                  )})
+       : ''
       }
+        <NewLayerDialog
+                 {...this.props}
+        />
       </Header>
     );
   }

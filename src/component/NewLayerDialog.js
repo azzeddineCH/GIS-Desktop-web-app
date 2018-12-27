@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal , Input, Select} from 'antd';
+import { Modal , Input,message, Select} from 'antd';
 import 'antd/dist/antd.css';
 
 
@@ -22,9 +22,17 @@ export default class NewLayerDialog extends React.Component {
     handleSubmit(){  
         const { layerName , layerType} = this.state
     
-        
-        this.props.onMapLayerAdded(layerName,layerType)
-        this.handleCancel()
+        const layerAlreadyExist = this.props.store.layersTree.mapLayers.some((el)=>{
+            return el.name === layerName;
+          
+        })
+
+        if(layerAlreadyExist){
+            message.error('Layer name already exist');
+        }else{
+            this.props.onMapLayerAdded(layerName,layerType)
+            this.handleCancel()
+        }
         
     }
         
@@ -54,6 +62,7 @@ export default class NewLayerDialog extends React.Component {
         <div>
         <Modal
           title="Add a vector Layer"
+          okText="Add"
           visible={this.props.store.newLayerDialogState}
           onOk={this.handleSubmit}
           onCancel={this.handleCancel}
