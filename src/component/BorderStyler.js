@@ -47,17 +47,20 @@ export default class BorderStyler extends React.Component {
             <InputNumber min={1} 
                     defaultValue={1} 
                     onChange={this.onChangeSize} 
-                    disabled={this.state.disabled} />
+                    disabled={this.state.disabled}
+                    style={{width:60}} />
             <div>Dash :</div>
             <InputNumber min={1} 
                     defaultValue={1} 
                     onChange={this.onChangeDash} 
-                    disabled={this.state.disabled}/>
+                    disabled={this.state.disabled}
+                    style={{width:60}}/>
             <div>Gap :</div>
             <InputNumber min={1} 
                     defaultValue={1} 
                     onChange={this.onChangeGap} 
-                    disabled={this.state.disabled}/>
+                    disabled={this.state.disabled}
+                    style={{width:60}}/>
         </div> 
          
     );

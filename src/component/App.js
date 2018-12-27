@@ -9,7 +9,21 @@ import SymbologyPanel from "./SymbologyPanel";
 
 export default class App extends React.Component {
 
+  constructor(props) {
+    super(props);
 
+    this.ChangeSymbologyPanelState = this.ChangeSymbologyPanelState.bind(this);
+
+    this.state ={
+        ShowSymbologyPanel:false,
+    };
+  }
+
+  ChangeSymbologyPanelState(){
+    this.setState({
+      ShowSymbologyPanel:!this.state.ShowSymbologyPanel,
+    });
+  }
 
   render() {
     return(
@@ -18,8 +32,8 @@ export default class App extends React.Component {
         <Layout>
           <LayerBar {...this.props}/>
           <MapPanel {...this.props} />
-          <SymbologyPanel showSymbology={false}/>
-          <ToolBar/>
+          {this.state.ShowSymbologyPanel && <SymbologyPanel/>}
+          <ToolBar action={this.ChangeSymbologyPanelState}/>
         </Layout>
       </Layout>
     );

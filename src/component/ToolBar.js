@@ -13,7 +13,7 @@ export default class ToolBar extends React.Component {
     const ToolBarContainer  = Layout.Sider;
     return(
       <ToolBarContainer width={60} className ="tool_bar" >
-        <Icon type="setting" theme="filled" className="tools" />
+        <Icon type="setting" theme="filled" className="tools" onClick={this.props.action} />
       </ToolBarContainer>
     );
   }
