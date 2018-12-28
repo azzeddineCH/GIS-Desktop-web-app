@@ -8,6 +8,7 @@ import Static from 'ol/source/ImageStatic.js';
 import VectorLayer from 'ol/layer/Vector.js';
 import VectorSource from 'ol/source/Vector.js';
 
+
 export default function importMap(state= defaultState.map, action){
  
   const { path } = action  ;

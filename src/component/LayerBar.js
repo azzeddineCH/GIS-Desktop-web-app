@@ -49,7 +49,7 @@ export default class LayerBar extends React.Component {
                           <MapLayersTree
                             onLayerClicked={this.handleLayerClick}
                             map={this.props.store.map}/>:
-                            this.renderSkeleton(20)
+                            this.renderSkeleton(5)
             }
           </Card> 
           <Card 
