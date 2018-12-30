@@ -21,6 +21,15 @@ export default class MapLayerTools extends React.Component {
                       <Icon type="diff"/>
                             Add Vector Layer
                       </Button>  
+                      <Button
+                            disabled={this.props.disabled}
+                            className = "hidedButton"
+                            name="deleteLayer"
+                            type="dashed"    
+                            onClick={this.props.onDeleteLayerClicked}>
+                      <Icon type="diff"/>
+                            Delete Vector Layer
+                      </Button>  
                       <DigitizeButton
                                 disabled={this.props.disabled}
                                 className = "hidedButton"

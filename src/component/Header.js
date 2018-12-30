@@ -7,12 +7,15 @@ export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.onAddLayerClicked = this.onAddLayerClicked.bind(this)
+    this.onDeleteLayerClicked = this.onDeleteLayerClicked.bind(this)
   }
 
   onAddLayerClicked(){
-  
     this.props.onNewLayerDialogStateChenged(true);
+  }
 
+  onDeleteLayerClicked(){
+    this.props.onMapLayerDeleted(this.props.store.layersTree.slectedMapLayer.name);
   }
 
    
@@ -34,6 +37,7 @@ export default class Header extends React.Component {
                             map={this.props.store.map}
                             drawType={element.type}
                             onAddLayerClicked={this.onAddLayerClicked}
+                            onDeleteLayerClicked={this.onDeleteLayerClicked}
                       />
                   )})
        : ''
