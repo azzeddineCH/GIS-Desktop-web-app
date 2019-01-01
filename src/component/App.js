@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, Drawer } from 'antd';
 import MapPanel from "./MapPanel";
 import LayerBar from "./LayerBar";
 import Header from "./Header";
@@ -33,12 +33,26 @@ export default class App extends React.Component {
 
   render() {
     return(
-      <Layout id="root">
+
+      <Layout 
+        className="root">
         <Header  {...this.props}/>
-        <Layout>
+        <Layout 
+          className="root"
+          hasSider={true}>
           <LayerBar {...this.props}/>
           <MapPanel {...this.props} />
-          {this.state.ShowSymbologyPanel && <SymbologyPanel action={this.ChangeSymbologyPanelState} {...this.props}/>}
+          <Drawer
+            width={"40%"}
+            destroyOnClose={true}
+            placement="right"
+            closable={true}
+            onClose={this.ChangeSymbologyPanelState}
+            visible={this.state.ShowSymbologyPanel}>
+              
+              <SymbologyPanel action={this.ChangeSymbologyPanelState} {...this.props}/>
+          
+          </Drawer>
           <ToolBar action={this.ChangeSymbologyPanelState}/>
         </Layout>
       </Layout>

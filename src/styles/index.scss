@@ -1,5 +1,4 @@
-$accent : #43425D;
-$secondary_accent: #F0F0F7;
+
 
 $sider : #43425D;
 $siderbutton : #A5A4BF;
@@ -20,20 +19,20 @@ body {
     sans-serif;  
 }
 
-#root{
+.root{
   height: 100%;
 }
 
 #mapPanel{
-  height: 100%;
-  background: $secondary_accent;
+  height: 100vh;
+  background: white;
 
 }
 
 #map{
   height: 100%;
   width: 100%;
-  background: $secondary_accent;
+  background: white;
 }
 
 #uploadButton{
@@ -41,16 +40,42 @@ body {
     margin: auto;
 }
 
+
 #header{
- align-items: flex-end;
- background: white;
+ background: #fefefe;
+ box-shadow: 0 2px 8px #f0f1f2;
+ z-index: 10;
+ overflow: hidden;
+ display: inline;
+ position: relative;
  padding: 0%;
- margin: 0%
+ margin: 0%;
+    
+    #projectTitle{
+      margin: 0px;
+      letter-spacing: 2px;
+      word-spacing: 4px;
+      text-align: center;
+      width: 15%;
+      display: inline-block;
+    }
+      
+    .MapLayerTools{
+      display: inline-block;
+
+      &>*{
+        margin-right: 20px;
+      }
+    }
 }
 
-#layerTree{
+
+#mapEllememts{
   background: white;
-  box-shadow: 10 10 12 #43425D
+  box-shadow: 10 10 12 #43425D;
+  .ellementsTree{
+      max-height: 50%;
+  }
   
 }
 
@@ -67,26 +92,25 @@ body {
 
 .tools{
   color: $siderbutton;
-  width: 60px;
+  width: 100%;
 
 }
 
 
 #symbologypanel{
   background-color: $text;
-  min-width: 500px;
+  min-width: 100%;
   
 }
 
 .panel_title{
   color: $textdark;
   text-align: center;
-  margin-top: 20px;
 }
 
 .panel_text{
   color : $textdark;
-  margin: 20px;
+  margin: 10px;
 }
 
 .flex_div{

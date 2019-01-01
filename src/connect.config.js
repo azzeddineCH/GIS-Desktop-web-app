@@ -5,6 +5,7 @@ import onMapDeleted from './action/onMapDeleted';
 import onNewLayerDialogStateChenged from './action/onNewLayerDialogStateChenged';
 import onMapLayerAdded from './action/onMapLayerAdded';
 import onSelectedLayerChanged from './action/onSelectedLayerChanged';
+import onLayerStyleChanged from './action/onLayerStyleChanged';
 import App from "./component/App";
 
 
@@ -19,7 +20,8 @@ function mapDispatchToProps(dispatcher){
         onMapDeleted,
         onNewLayerDialogStateChenged,
         onMapLayerAdded,
-        onSelectedLayerChanged
+        onSelectedLayerChanged,
+        onLayerStyleChanged,
     },dispatcher);
 }
 

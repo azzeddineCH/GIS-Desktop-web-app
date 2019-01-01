@@ -24,11 +24,11 @@ export default class SymbologyHandler extends React.Component {
   render() {
     const Option = Select.Option;
     const columns = [{
-        title: 'Name',
+        title: 'Column',
         dataIndex: 'name',
         render: text => <a href="javascript:;">{text}</a>,
       }, {
-        title: 'Age',
+        title: 'Count',
         dataIndex: 'age',
       }];
       const data = [{

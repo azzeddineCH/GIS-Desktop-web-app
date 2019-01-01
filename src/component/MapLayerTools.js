@@ -11,14 +11,15 @@ export default class MapLayerTools extends React.Component {
   }
   render() {    
     return(
-                    <ToggleGroup>
+                    <ToggleGroup
+                       className="MapLayerTools">
                       <Button
                             className = "hidedButton"
                             name="addLayer"
                             type="dashed"    
                             onClick={this.props.onAddLayerClicked}>
                       <Icon type="diff"/>
-                            Add Layer
+                            Add Vector Layer
                       </Button>  
                       <DigitizeButton
                                 disabled={this.props.disabled}
@@ -31,7 +32,7 @@ export default class MapLayerTools extends React.Component {
                             
                         >
                            <Icon type="radar-chart" />
-                            Draw
+                            Draw {" "+this.props.drawType}
                       </DigitizeButton>
                       <DigitizeButton
                                 disabled={this.props.disabled}
@@ -43,7 +44,7 @@ export default class MapLayerTools extends React.Component {
                                 type="dashed" 
                         >
                       <Icon type="edit" />
-                            Edit
+                            Edit Feature
                       </DigitizeButton>
                       <DigitizeButton
                                 disabled={this.props.disabled}
@@ -55,7 +56,7 @@ export default class MapLayerTools extends React.Component {
                                 type="dashed" 
                         >
                             <Icon type="delete" />
-                              Delete
+                              Delete Feature
                       </DigitizeButton>
                 </ToggleGroup>
             );

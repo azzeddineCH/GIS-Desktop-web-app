@@ -10,7 +10,7 @@ export default class ColorPicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            background: '#172030',
+            background: "rgba(0, 0, 255, 0.1)",
             visible: false,
           };
     }
@@ -25,6 +25,7 @@ export default class ColorPicker extends React.Component {
         this.setState({ 
             background: color.hex,
         });
+        this.props.action(color);
         setTimeout(function() {
             this.setState({ 
                 //visible: false,
