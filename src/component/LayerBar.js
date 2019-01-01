@@ -2,6 +2,8 @@ import React  from 'react';
 import { Skeleton, Layout , Card} from 'antd';
 import MapLayersTree from './MapLayersTree';
 import MapLayerFeaturesTree from './MapLayerFeaturesTree';
+import { LayerTree } from '@terrestris/react-geo';
+
 export default class LayerBar extends React.Component {
 
   constructor(props){

@@ -6,8 +6,8 @@ import Header from "./Header";
 import ToolBar from "./ToolBar";
 import Footer from "./Footer";
 import SymbologyPanel from "./SymbologyPanel";
+import AttributesTablePanel from "./AttributesTablePanel";
 
-export default class App extends React.Component {
 
   constructor(props) {
     super(props);
@@ -54,6 +54,7 @@ export default class App extends React.Component {
           
           </Drawer>
           <ToolBar action={this.ChangeSymbologyPanelState}/>
+          <AttributesTablePanel {...this.props}/>
         </Layout>
       </Layout>
     );
