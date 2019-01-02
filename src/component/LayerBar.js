@@ -1,6 +1,7 @@
 import React  from 'react';
 import { Layout } from 'antd';
 import { LayerTree } from '@terrestris/react-geo';
+
 export default class LayerBar extends React.Component {
 
   constructor(props){

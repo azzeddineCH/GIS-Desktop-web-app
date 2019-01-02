@@ -4,11 +4,13 @@ import layersReducer from "./reducer/layersReducers/layersReducer";
 import setNewLayerDialogState from "./reducer/UIReducers/setNewLayerDialogState";
 import MapLayerObject from './data/MapLayerObject'
 import multi from 'redux-multi'
-/**
- * an object that hold the default state of the app
+
+ /* an object that hold the default state of the app
  */
 
 const defaultLayer = new MapLayerObject("sketch","Polygon")
+
+const featuresProperties = defaultLayer.getFeatureProperties()
 
 export const defaultState ={
    map: null,
@@ -17,6 +19,7 @@ export const defaultState ={
       slectedMapLayer: defaultLayer
    },
    newLayerDialogState: false,
+   featurePropertiesObject:featuresProperties,
   };
 
 
