@@ -1,7 +1,9 @@
 import {combineReducers ,createStore, applyMiddleware, compose} from 'redux' ;
 import mapReducer from "./reducer/mapReducers/mapReducer";
 import layersReducer from "./reducer/layersReducers/layersReducer";
+//import topologyReducer from "./reducer/topologyReducers/topologyReducer";
 import setNewLayerDialogState from "./reducer/UIReducers/setNewLayerDialogState";
+import setNewTopologyState from "./reducer/UIReducers/setNewTopologyState";
 import MapLayerObject from './data/MapLayerObject'
 import multi from 'redux-multi'
 /**
@@ -12,11 +14,14 @@ const defaultLayer = new MapLayerObject("sketch","Polygon")
 
 export const defaultState ={
    map: null,
+   //topologyLayers:[defaultLayer],
    layersTree:{
       mapLayers:[defaultLayer],
       slectedMapLayer: defaultLayer
    },
    newLayerDialogState: false,
+   newTopologyState: false,
+
   };
 
 
@@ -28,7 +33,8 @@ const rootReducer = combineReducers({
      map: mapReducer,
      layersTree: layersReducer,
      newLayerDialogState: setNewLayerDialogState,
-  
+     newTopologyState:setNewTopologyState,
+      
   });
 
 

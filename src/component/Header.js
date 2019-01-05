@@ -1,12 +1,14 @@
 import React  from 'react';
 import { Layout } from 'antd';
 import NewLayerDialog from "./NewLayerDialog"
+import NewTopology from "./NewTopology"
 import MapLayerTools from "./MapLayerTools"
 import { Card } from 'antd';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.onAddLayerClicked = this.onAddLayerClicked.bind(this)
+    this.onAddLayerClicked = this.onAddLayerClicked.bind(this);
+    this.onAddTopologyClicked = this.onAddTopologyClicked.bind(this)
   }
 
   onAddLayerClicked(){
@@ -14,7 +16,11 @@ export default class Header extends React.Component {
     this.props.onNewLayerDialogStateChenged(true);
 
   }
+  onAddTopologyClicked(){
+  
+    this.props.onNewTopologyChanged(true);
 
+  }
    
 
   render() {
@@ -34,11 +40,15 @@ export default class Header extends React.Component {
                             map={this.props.store.map}
                             drawType={element.type}
                             onAddLayerClicked={this.onAddLayerClicked}
+                            onAddTopologyClicked={this.onAddTopologyClicked}
                       />
                   )})
        : ''
       }
         <NewLayerDialog
+                 {...this.props}
+        />
+         <NewTopology
                  {...this.props}
         />
       </Header>

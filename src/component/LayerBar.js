@@ -2,6 +2,8 @@ import React  from 'react';
 import { Skeleton, Layout , Card} from 'antd';
 import MapLayersTree from './MapLayersTree';
 import MapLayerFeaturesTree from './MapLayerFeaturesTree';
+import MapTopologyLayersTree from './MapTopologyLayersTree';
+
 export default class LayerBar extends React.Component {
 
   constructor(props){
@@ -36,7 +38,7 @@ export default class LayerBar extends React.Component {
     const Sider  = Layout.Sider;
     const bodyStyle = {
       overflowY: 'scroll',
-      height: "50vh",
+      height: "33vh",
     }
     return(
       <Sider id='mapEllememts' width="15%">
@@ -49,7 +51,7 @@ export default class LayerBar extends React.Component {
                           <MapLayersTree
                             onLayerClicked={this.handleLayerClick}
                             map={this.props.store.map}/>:
-                            this.renderSkeleton(20)
+                            this.renderSkeleton(10)
             }
           </Card> 
           <Card 
@@ -66,6 +68,18 @@ export default class LayerBar extends React.Component {
                         />:  this.renderSkeleton(5)
             }
            </Card> 
+           <Card 
+           bodyStyle={bodyStyle}
+           title="Topology Layers"
+           className="ellementsTree"
+           id="mapTopologyLayersCard">
+            { this.props.store.map ? 
+                          <MapTopologyLayersTree
+                            //onLayerClicked={this.handleLayerClick}
+                            map={this.props.store.map}/>:
+                            this.renderSkeleton(20)
+            }
+          </Card> 
       </Sider>
     );
   }
