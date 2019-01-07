@@ -4,6 +4,7 @@ import importMap from "./importMap";
 import deleteMap from "./deleteMap";
 import addMapLayer from "./addMapLayer";
 import changeLayerStyle from "./changeLayerStyle";
+import changeFeaturesStyle from './changeFeaturesStyle';
 
 export default function mapReducer(state= defaultState.map, action){
  
@@ -19,8 +20,11 @@ switch (type) {
     case "ADD_MAP_LAYER":
         return addMapLayer(state,action.layerName);
 
-    case "CHANGE_STYLE":
+    case "CHANGE_LAYER_STYLE":
         return changeLayerStyle(state,action);
+
+    case "CHANGE_FEATURES_STYLE":
+        return changeFeaturesStyle(state,action);
 
     default:
         return state;

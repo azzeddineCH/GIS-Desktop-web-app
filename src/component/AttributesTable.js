@@ -1,5 +1,5 @@
 import React  from 'react';
-import { FeatureGrid } from "@terrestris/react-geo"
+import { FeatureGrid } from "@terrestris/react-geo";
 import { Input} from 'antd';
 
 
@@ -7,20 +7,20 @@ import { Input} from 'antd';
 export default class AttributesTable extends React.Component {
     constructor(props) {
       super(props);
-      this.AttributesTable=props.featuresProperties
+      this.AttributesTable=props.featuresProperties;
     }
 
     addProperty(key,value){
-        this.AttributesTable[key]=value
+        this.AttributesTable[key]=value;
     }
 
     getMeasure(feature){
         var geo =feature.getGeometry()
 
-        if (geo.getType()=='LineString') return feature.getGeometry().getLength()
+        if (geo.getType()==='LineString') return feature.getGeometry().getLength();
         else{
-            if(geo.getType()=='Polygon') return feature.getGeometry().getArea() 
-            else return 0
+            if(geo.getType()==='Polygon') return feature.getGeometry().getArea();
+            else return 0;
         }
     }
     

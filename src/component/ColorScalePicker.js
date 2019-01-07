@@ -6,16 +6,19 @@ import { DEFAULT_SCALE } from "react-colorscales";
 import { Button} from 'antd';
 
 export default class ColorScalePicker extends Component {
+    
 
     constructor(props) {
         super(props);
+
+        const viridisColorscale = ['#fafa6e', '#9cdf7c', '#4abd8c', '#00968e', '#106e7c', '#2a4858'];
 
         this.onChange = this.onChange.bind(this);
         this.toggleColorscalePicker = this.toggleColorscalePicker.bind(this);
 
         this.state = {
             showColorscalePicker: false,
-            colorscale: DEFAULT_SCALE,
+            colorscale: viridisColorscale,
         };
     }
     
@@ -28,15 +31,22 @@ export default class ColorScalePicker extends Component {
         this.setState({
             colorscale: colorscale
         });
+        setTimeout(function() {
+            this.props.action(this.state.colorscale);
+        }.bind(this), 300);
+        
     };
 
 
     render() {
+
+        
         const Colorscalepicker =(
                 <ColorscalePicker 
                         className="colorScalePickerContainer"  
                         onChange={this.onChange}
-                        colorscale={this.state.colorscale}/>
+                        colorscale={this.state.colorscale}
+                        fixSwatches = {true}/>
         );
         return (
             <div>            

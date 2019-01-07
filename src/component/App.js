@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import SymbologyPanel from "./SymbologyPanel";
 import AttributesTablePanel from "./AttributesTablePanel";
 
-
+export default class App extends React.Component {
   constructor(props) {
     super(props);
 

@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import BorderStyler from "./BorderStyler";
 import SymbologyHandler from "./SymbologyHandler";
 import { Fill, Stroke, Style} from 'ol/style.js';
+import { DEFAULT_SCALE } from "react-colorscales";
 
 
 export default class SymbologyPanel extends React.Component {
@@ -16,9 +17,12 @@ export default class SymbologyPanel extends React.Component {
             layerName : this.props.store.layersTree.slectedMapLayer.name,
             borderstyle : new Stroke(),
             fillstyle : new Fill(),
+            colorscale: DEFAULT_SCALE,
+            data : null ,
         };
         this.onApplyButtonClicked = this.onApplyButtonClicked.bind(this);
         this.onBorderStyleChanged = this.onBorderStyleChanged.bind(this);
+        this.onFeaturesStyleChanged = this.onFeaturesStyleChanged.bind(this);
     }
 
   
@@ -36,6 +40,18 @@ export default class SymbologyPanel extends React.Component {
         });
     }
 
+    onFeaturesStyleChanged(features,colorscale){
+
+        this.setState({
+            colorscale : colorscale,
+            data : features,
+        });
+
+        console.log(features);
+        console.log(colorscale);
+
+    }
+
     onApplyButtonClicked(){
         console.log(this.props.store.map.getLayers().getArray().filter(ele=>{
                 return(ele.get("name")==this.state.layerName);
@@ -43,10 +59,15 @@ export default class SymbologyPanel extends React.Component {
         var style = new Style({
             stroke: this.state.borderstyle,
             fill: this.state.fillstyle,
-          })
+          });
 
         this.props.onLayerStyleChanged(this.state.layerName, style);
+
+        this.props.onFeaturesStyleChanged(this.state.layerName,this.props.store.layersTree.slectedMapLayer.type, this.state.colorscale, this.state.data);
+        console.log(this.state.colorscale + " test " + this.state.data);
         this.props.action();
+
+
         
     }
   
@@ -58,7 +79,7 @@ export default class SymbologyPanel extends React.Component {
         <Content id="symbologypanel">
             <h1 className="panel_title">Symbology</h1>
             <h3 className="panel_text"> Layer : {this.state.layerName}</h3>
-            <SymbologyHandler/>
+            <SymbologyHandler {...this.props} action={this.onFeaturesStyleChanged}/>
             {this.props.store.layersTree.slectedMapLayer.type=="Point" ? null : <BorderStyler  action ={this.onBorderStyleChanged}/>}
             <div className="flex_div"
                 style={{

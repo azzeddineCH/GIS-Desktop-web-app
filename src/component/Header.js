@@ -6,7 +6,7 @@ import { Card } from 'antd';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.onAddLayerClicked = this.onAddLayerClicked.bind(this)
+    this.onAddLayerClicked = this.onAddLayerClicked.bind(this);
   }
 
   onAddLayerClicked(){
