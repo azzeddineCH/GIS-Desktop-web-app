@@ -7,11 +7,10 @@ import Projection from 'ol/proj/Projection.js';
 import Static from 'ol/source/ImageStatic.js';
 import VectorLayer from 'ol/layer/Vector.js';
 import VectorSource from 'ol/source/Vector.js';
-
-
 export default function importMap(state= defaultState.map, action){
  
   const { path } = action  ;
+
 
 
     let extent = [0, 0, 1024, 968];
@@ -20,7 +19,7 @@ export default function importMap(state= defaultState.map, action){
       units: 'pixels',
       extent: extent
     });
-    let map = new Map({
+    let map = new Map({ 
         layers: [
           new ImageLayer({
             name: 'map',

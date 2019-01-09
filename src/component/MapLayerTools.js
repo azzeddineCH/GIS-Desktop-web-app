@@ -1,6 +1,6 @@
 import React  from 'react';
-import { Layout } from 'antd';
-import { Button , Icon} from 'antd';
+
+import { Button , Icon,Divider} from 'antd';
 import { ToggleGroup,DigitizeButton } from "@terrestris/react-geo"
 
 
@@ -18,7 +18,7 @@ export default class MapLayerTools extends React.Component {
                             name="addLayer"
                             type="dashed"    
                             onClick={this.props.onAddLayerClicked}>
-                      <Icon type="diff"/>
+                      <Icon type="plus-circle" />
                             Add Vector Layer
                       </Button>  
                       <Button
@@ -27,9 +27,10 @@ export default class MapLayerTools extends React.Component {
                             name="deleteLayer"
                             type="dashed"    
                             onClick={this.props.onDeleteLayerClicked}>
-                      <Icon type="diff"/>
+                     <Icon type="minus-circle" />
                             Delete Vector Layer
                       </Button>  
+                      <Divider type="vertical" />
                       <DigitizeButton
                                 disabled={this.props.disabled}
                                 className = "hidedButton"
@@ -37,8 +38,7 @@ export default class MapLayerTools extends React.Component {
                                 digitizeLayerName={this.props.layerName}
                                 map={this.props.map}
                                 drawType={this.props.drawType}
-                                type="dashed" 
-                            
+                                type="dashed"
                         >
                            <Icon type="radar-chart" />
                             Draw {" "+this.props.drawType}
@@ -66,7 +66,15 @@ export default class MapLayerTools extends React.Component {
                         >
                             <Icon type="delete" />
                               Delete Feature
-                      </DigitizeButton>
+                      </DigitizeButton>  
+                      <Divider type="vertical" />
+                      <Button
+                            className = "hidedButton"
+                            name="addLayer"
+                            type="dashed">
+                        <Icon type="close-circle" />
+                           Delete Project
+                      </Button>  
                 </ToggleGroup>
             );
         }

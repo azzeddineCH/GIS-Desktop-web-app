@@ -13,7 +13,7 @@ export default class ToolBar extends React.Component {
     const ToolBarContainer  = Layout.Sider;
     return(
       <ToolBarContainer>
-
+          <div className="mouse-position"></div>
       </ToolBarContainer>
     );
   }
