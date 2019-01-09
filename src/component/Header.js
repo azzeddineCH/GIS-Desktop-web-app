@@ -1,11 +1,14 @@
 import React  from 'react';
 import { Layout } from 'antd';
 import NewLayerDialog from "./NewLayerDialog"
+import NewTopology from "./NewTopology"
 import MapLayerTools from "./MapLayerTools"
 import { Card } from 'antd';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
+    this.onAddLayerClicked = this.onAddLayerClicked.bind(this);
+    this.onAddTopologyClicked = this.onAddTopologyClicked.bind(this)
     this.onAddLayerClicked = this.onAddLayerClicked.bind(this)
     this.onDeleteLayerClicked = this.onDeleteLayerClicked.bind(this)
   }
@@ -17,7 +20,11 @@ export default class Header extends React.Component {
   onDeleteLayerClicked(){
     this.props.onMapLayerDeleted(this.props.store.layersTree.slectedMapLayer.name);
   }
+  onAddTopologyClicked(){
+  
+    this.props.onNewTopologyChanged(true);
 
+  }
    
 
   render() {
@@ -37,12 +44,16 @@ export default class Header extends React.Component {
                             map={this.props.store.map}
                             drawType={element.type}
                             onAddLayerClicked={this.onAddLayerClicked}
+                            onAddTopologyClicked={this.onAddTopologyClicked}
                             onDeleteLayerClicked={this.onDeleteLayerClicked}
                       />
                   )})
        : ''
       }
         <NewLayerDialog
+                 {...this.props}
+        />
+         <NewTopology
                  {...this.props}
         />
       </Header>

@@ -6,7 +6,13 @@ import onNewLayerDialogStateChenged from './action/onNewLayerDialogStateChenged'
 import onMapLayerAdded from './action/onMapLayerAdded';
 import onMapLayerDeleted from './action/onMapLayerDeleted';
 import onSelectedLayerChanged from './action/onSelectedLayerChanged';
+import onNewTopologyChanged from './action/onNewTopologyChanged';
+import onMapLayersIntersect from './action/onMapLayersIntersect';
+import onMapTopologyLayerAdded from './action/onMapTopologyLayerAdded';
 import App from "./component/App";
+import onMapLayersDiff from './action/onMapLayersDiff';
+import onMapLayersSemiDiff from './action/onMapLayersSemiDiff';
+import onMapLayersUnion from './action/onMapLayersUnion';
 
 
 
@@ -20,6 +26,13 @@ function mapDispatchToProps(dispatcher){
         onMapDeleted,
         onNewLayerDialogStateChenged,
         onMapLayerAdded,
+        onSelectedLayerChanged,
+        onNewTopologyChanged,
+        onMapTopologyLayerAdded,
+        onMapLayersIntersect,
+        onMapLayersDiff,
+        onMapLayersSemiDiff,
+        onMapLayersUnion
         onMapLayerDeleted,
         onSelectedLayerChanged
     },dispatcher);
