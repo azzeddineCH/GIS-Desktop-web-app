@@ -12,7 +12,7 @@ export default class Footer extends React.Component {
   render() {
     const FooterContainer  = Layout.Footer;
     return(
-        <FooterContainer>
+        <FooterContainer className="footer">
             this is the Footer of the App
         </FooterContainer>
     );

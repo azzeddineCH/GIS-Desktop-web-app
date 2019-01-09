@@ -29,6 +29,7 @@ export default class MapLayerTools extends React.Component {
                             onClick={this.props.onDeleteLayerClicked}>
                      <Icon type="minus-circle" />
                             Delete Vector Layer
+
                       </Button>  
                       <Divider type="vertical" />
                       <DigitizeButton

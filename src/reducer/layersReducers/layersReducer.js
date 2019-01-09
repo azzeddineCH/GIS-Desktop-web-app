@@ -16,7 +16,8 @@ switch (type) {
         return deleteMapLayerInfo(state,action);
     
     case "SET_SELECTED_MAP_LAYER":
-        return setSelectedMapLayer(state,action)
+        return setSelectedMapLayer(state,action);
+    
     default:
         return state;
         

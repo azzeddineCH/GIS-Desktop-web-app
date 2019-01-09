@@ -8,6 +8,7 @@ export default class Header extends React.Component {
     super(props);
     this.onAddLayerClicked = this.onAddLayerClicked.bind(this)
     this.onDeleteLayerClicked = this.onDeleteLayerClicked.bind(this)
+
   }
 
   onAddLayerClicked(){

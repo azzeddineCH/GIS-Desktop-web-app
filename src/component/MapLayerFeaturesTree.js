@@ -10,11 +10,15 @@ export default class MapLayerFeaturesTree extends React.Component {
  
   render() { 
     
-   
     return(
         <div>
             <FeatureGrid
               size={"small"}
+
+              featureStyle = {this.props.map.getLayers().getArray().filter(ele=>{
+                return(ele.get("name")==this.props.layer.name)
+              })[0].getStyle()}
+              
               showHeader={false}
               features={this.props.features.map((feature,index)=>{
                 feature.set("ID",index);
