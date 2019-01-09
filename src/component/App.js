@@ -4,10 +4,11 @@ import MapPanel from "./MapPanel";
 import LayerBar from "./LayerBar";
 import Header from "./Header";
 import ToolBar from "./ToolBar";
+import AttributesTablePanel from "./AttributesTablePanel";
+
+
 
 export default class App extends React.Component {
-
-
 
   render() {
     return(
@@ -19,6 +20,7 @@ export default class App extends React.Component {
                <LayerBar {...this.props}/>
                 <MapPanel {...this.props}/>
                 <ToolBar/>    
+                <AttributesTablePanel {...this.props}/>
           </Layout>
       </Layout>
     );
