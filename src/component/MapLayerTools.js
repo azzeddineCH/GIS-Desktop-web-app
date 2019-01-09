@@ -67,16 +67,17 @@ export default class MapLayerTools extends React.Component {
                         >
                             <Icon type="delete" />
                               Delete Feature
-                      </DigitizeButton>  
-                      <Divider type="vertical" />
+                      </DigitizeButton>
+                      
                       <Button
                             className = "hidedButton"
-                            name="addLayer"
-                            type="dashed">
-                        <Icon type="close-circle" />
-                           Delete Project
-                      </Button>  
-                </ToggleGroup>
+                            name="addtopology"
+                            type="dashed"    
+                            onClick={this.props.onAddTopologyClicked}>
+                      <Icon type="fund" />
+                            Add New Topology
+                        </Button>
+                        </ToggleGroup>
             );
         }
     }
