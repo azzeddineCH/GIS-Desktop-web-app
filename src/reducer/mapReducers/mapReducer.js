@@ -7,6 +7,7 @@ import layersintersection from "./layersintersection"
 import layersunion from './layersunion'
 import layersSemidifference from './layersSemidifference'
 import layersdifference from './layersdifference'
+import deleteMapLayer from "./deleteMapLayer";
 
 export default function mapReducer(state= defaultState.map, action){
  
@@ -29,6 +30,12 @@ switch (type) {
         return layersSemidifference(state,action.TopologyName,action.FirstFeaturelayername,action.FirstFeatureId,action.SecondFeaturelayername,action.SecondFeatureId)
      case "ADD_MAP_LAYER":
         return addMapLayer(state,action.layerName);
+       
+    case "ADD_MAP_LAYER":
+        return addMapLayer(state,action);
+
+    case "DELETE_MAP_LAYER":
+        return deleteMapLayer(state,action);
     default:
         return state;
 

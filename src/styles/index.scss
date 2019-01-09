@@ -7,6 +7,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;  
+    overflow: hidden;
 }
 
 .root{
@@ -25,9 +26,24 @@ body {
   background: white;
 }
 
-#uploadButton{
+#upload{
     position: absolute;
-    margin: 40vh 30vw;
+    margin: 40vh 10vw;
+    align-items: center;
+    width: 50%;
+    &>*{
+      position: relative;
+      margin: 10px auto;
+      display:block;
+    }
+    #uploadInput{
+        width: 50%
+    }
+
+    #uploadTag{
+      max-width: 40%
+    }
+   
 }
 
 
@@ -64,7 +80,7 @@ body {
   background: white;
   box-shadow: 10 10 12 #43425D;
   .ellementsTree{
-      max-height: 33%;
+      height: 50%;
   }
   
 }
