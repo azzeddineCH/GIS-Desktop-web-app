@@ -21,7 +21,9 @@ export default class LayerBar extends React.Component {
   handleLayerClick(selectedKeys, e){
     
     this.props.onSelectedLayerChanged(e.selectedNodes.length > 0 ? e.selectedNodes[0].props.title : "sketch")
-    
+    var log= this.props.store.layersTree.slectedMapLayer.type == "default";
+    var ll="layer selectionné";
+    console.log(ll,log);
   }
 
 
@@ -81,7 +83,7 @@ export default class LayerBar extends React.Component {
            id="mapTopologyLayersCard">
             { this.props.store.map ? 
                           <MapTopologyLayersTree
-                            //onLayerClicked={this.handleLayerClick}
+                            onLayerClicked={this.handleLayerClick}
                             map={this.props.store.map}/>:
                             this.renderSkeleton(20)
             }

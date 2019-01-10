@@ -24,7 +24,7 @@ export default class MapLayerTools extends React.Component {
                             Add Vector Layer
                       </Button>  
                       <Button
-                            disabled={this.props.disabled}
+                            disabled={this.props.disabledtopo}
                             className = "hidedButton"
                             name="deleteLayer"
                             type="dashed"    
@@ -61,7 +61,7 @@ export default class MapLayerTools extends React.Component {
                             Edit Feature
                       </DigitizeButton>
                       <DigitizeButton
-                                disabled={this.props.disabled}
+                                disabled={this.props.disabledtopo}
                                 className = "hidedButton"
                                 name="delete"
                                 digitizeLayerName={this.props.layerName}

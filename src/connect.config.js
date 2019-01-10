@@ -15,7 +15,7 @@ import App from "./component/App";
 import onMapLayersDiff from './action/onMapLayersDiff';
 import onMapLayersSemiDiff from './action/onMapLayersSemiDiff';
 import onMapLayersUnion from './action/onMapLayersUnion';
-
+import onMapLayersAddTopology from  './action/onMapLayersAddTopology';
 
 
 /**
@@ -39,6 +39,7 @@ function mapDispatchToProps(dispatcher){
         onSelectedLayerChanged,
         onLayerStyleChanged,
         onFeaturesStyleChanged,
+        onMapLayersAddTopology,
     },dispatcher);
 }
 
