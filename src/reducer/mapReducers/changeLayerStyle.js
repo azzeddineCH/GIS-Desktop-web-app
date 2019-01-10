@@ -19,7 +19,7 @@ export default function changeLayerStyle(state, action){
             
         });
         
-        
+
         
         
        return Map;

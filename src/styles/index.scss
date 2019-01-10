@@ -1,7 +1,7 @@
 
 
 $sider : #43425D;
-$siderbutton : #A5A4BF;
+$siderbutton : white;
 $siderdark : #3B3B53;
 $headericons:#607D8B;
 $buttons:#2196F3;
@@ -24,16 +24,37 @@ body {
   height: 100%;
 }
 
+#content *{
+  z-index: 5;
+}
+
+.footer{
+  width: 81.5%;
+  padding: 0px;
+  position: fixed;
+  margin-left: 15%;
+  margin-right: 3.5%;
+  z-index: 4;
+  bottom: 0px;
+  background: #fefefe;
+  height: 50px;
+  box-shadow: 0 8 4px rgba(0,0,0,0.3);
+  align-items: center;
+  justify-items: center;
+  display: table;
+
+}
 #mapPanel{
   height: 100vh;
-  background: white;
+  z-index: 3;
+  background:url("https://www.freeiconspng.com/uploads/graph-paper-grid-png-4.png");
 
 }
 
 #map{
   height: 100%;
   width: 100%;
-  background: white;
+  z-index: 3;
 }
 
 #upload{
@@ -58,7 +79,7 @@ body {
 
 #header{
  background: #fefefe;
- box-shadow: 0 2px 8px #f0f1f2;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.3);
  z-index: 10;
  overflow: hidden;
  display: inline;
@@ -86,8 +107,8 @@ body {
 
 
 #mapEllememts{
-  background: white;
-  box-shadow: 10 10 12 #43425D;
+  background: #fefefe;
+   box-shadow: 0 10px px rgba(0,0,0,0.3);
   .ellementsTree{
 
       max-height: 50%;
@@ -105,12 +126,19 @@ body {
 
 
 .tool_bar{
-  background-color: $sider;
+  position: relative;
+  overflow: hidden;
+  background: #fefefe;
+   box-shadow: 0 10px 10px rgba(0,0,0,0.3);
 }
 
 .tools{
-  color: $siderbutton;
   width: 100%;
+  *{
+    width: 100%;
+    font-size: 20px;
+    
+  }
 
 }
 
@@ -164,4 +192,21 @@ body {
 .colorScalePickerContainer{
   max-height: 300px;
   background: white;
+}
+
+
+#mousePositionContainer{
+  width: 30%;
+  margin: auto;
+  justify-content: center;
+  display: table-cell;
+  vertical-align: middle;
+  span{
+    display: block;
+    margin: auto;
+    word-spacing: 10px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 20px
+  }
 }

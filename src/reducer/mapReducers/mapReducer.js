@@ -31,9 +31,7 @@ switch (type) {
         return layersdifference(state,action.TopologyName,action.FirstFeaturelayername,action.FirstFeatureId,action.SecondFeaturelayername,action.SecondFeatureId)
     case "SEMIDIFF" :
         return layersSemidifference(state,action.TopologyName,action.FirstFeaturelayername,action.FirstFeatureId,action.SecondFeaturelayername,action.SecondFeatureId)
-     case "ADD_MAP_LAYER":
-        return addMapLayer(state,action.layerName);
-       
+  
     case "ADD_MAP_LAYER":
         return addMapLayer(state,action);
 

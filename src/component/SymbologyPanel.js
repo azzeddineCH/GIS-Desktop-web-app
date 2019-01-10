@@ -53,19 +53,18 @@ export default class SymbologyPanel extends React.Component {
     }
 
     onApplyButtonClicked(){
-        console.log(this.props.store.map.getLayers().getArray().filter(ele=>{
-                return(ele.get("name")==this.state.layerName);
-              })[0].get("style"));
+
         var style = new Style({
             stroke: this.state.borderstyle,
             fill: this.state.fillstyle,
+            image: null
           });
 
         this.props.onLayerStyleChanged(this.state.layerName, style);
-
         this.props.onFeaturesStyleChanged(this.state.layerName,this.props.store.layersTree.slectedMapLayer.type, this.state.colorscale, this.state.data);
+      
         console.log(this.state.colorscale + " test " + this.state.data);
-        this.props.action();
+        
 
 
         
