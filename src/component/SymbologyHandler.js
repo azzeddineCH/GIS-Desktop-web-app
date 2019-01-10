@@ -214,11 +214,7 @@ export default class SymbologyHandler extends React.Component {
             </div>   
                 
                 
-<<<<<<< HEAD
                 :<h1 className="panel_title">No features</h1>
-=======
-                :<h1>No features</h1>
->>>>>>> 9f6c3d83bcf0436ac79920fa9d9d3fea8bf514e7
             
            
         );

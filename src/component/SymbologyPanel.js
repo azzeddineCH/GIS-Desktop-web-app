@@ -58,7 +58,6 @@ export default class SymbologyPanel extends React.Component {
 
     onApplyButtonClicked(){
 
-<<<<<<< HEAD
         var fillStyle = this.props.store.map.getLayers().getArray().filter(element=>{
             return element.getProperties().name == this.state.layerName;
         })[0].getStyle();
@@ -67,11 +66,6 @@ export default class SymbologyPanel extends React.Component {
         var style = new Style({
             stroke: this.state.borderstyle,
             fill: fillStyle instanceof Style ? fillStyle.getFill() : this.state.fillstyle,
-=======
-        var style = new Style({
-            stroke: this.state.borderstyle,
-            fill: this.state.fillstyle,
->>>>>>> 9f6c3d83bcf0436ac79920fa9d9d3fea8bf514e7
             image: null
           });
 
