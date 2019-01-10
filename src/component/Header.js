@@ -47,6 +47,7 @@ export default class Header extends React.Component {
                             onAddLayerClicked={this.onAddLayerClicked}
                             onAddTopologyClicked={this.onAddTopologyClicked}
                             onDeleteLayerClicked={this.onDeleteLayerClicked}
+                            drawStyle = {this.props.store.layersTree.mapLayers.filter((e) => e.name == element.name)[0].getStyle()}
                       />
                   )})
        : ''

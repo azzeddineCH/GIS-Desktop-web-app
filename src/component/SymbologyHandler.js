@@ -183,8 +183,9 @@ export default class SymbologyHandler extends React.Component {
 
 
         return(
-
-            <div> 
+            this.getFeatures().length>0 ?
+                
+                <div> 
                 <div className="flex_div">
                     <Select labelInValue defaultValue={{ key: 'id' }} style={{ width: 120 }} onChange={this.handleChange}>
                         {this.getColumns()}
@@ -210,6 +211,11 @@ export default class SymbologyHandler extends React.Component {
                             OnSubmit = {this.onSubmit}
                             data = {this.getData} />
             </div>   
+                
+                
+                :<h1>No features</h1>
+            
+           
         );
     }
 

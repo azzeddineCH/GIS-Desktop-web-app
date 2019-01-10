@@ -114,58 +114,53 @@ export default class AttributesTablePanel extends React.Component {
     
     const Option = Select.Option;
     return (
-      <div>
-        <Button type="primary" onClick={this.showDrawer} >
-          Table
-        </Button>
         <Drawer
           width={640}
           title="Table Attributaire"
           placement="right"
-          closable={false}
-          onClose={this.onClose}
-          visible={this.state.visible}
+          closable={true}
+          onClose={this.props.onClose}
+          visible={this.props.visible}
         >
 
-        <Modal
-          title="Basic Modal"
-          visible={this.state.visible2}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
+                      <Modal
+                        title="Basic Modal"
+                        visible={this.state.visible2}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                      >
 
-        <Select 
-          style={{ width: 120 }}
-          onChange={this.handleColumnTypeChange}
-          defaultValue={this.state.columnType}> 
-                  <Option value="Colonne personalisee">Colonne personalisee</Option>
-                  <Option value="mesure">mesure</Option>
-        </Select>       
-        <Input
-          placeholder="Enter le nom de la colonne"
-          value={nomColonne}
-          onChange={this.onChangeNomColonne}
-        />
-        <br /><br />
-        <Input
-          placeholder="Enter la valeur par defaut de la colonne"
-          value={valeurColonne}
-          onChange={this.onChangeValeurColonne}
-          disabled={this.state.disabled}
-        />
-        </Modal>
+                      <Select 
+                        style={{ width: 120 }}
+                        onChange={this.handleColumnTypeChange}
+                        defaultValue={this.state.columnType}> 
+                                <Option value="Colonne personalisee">Colonne personalisee</Option>
+                                <Option value="mesure">mesure</Option>
+                      </Select>       
+                      <Input
+                        placeholder="Enter le nom de la colonne"
+                        value={nomColonne}
+                        onChange={this.onChangeNomColonne}
+                      />
+                      <br /><br />
+                      <Input
+                        placeholder="Enter la valeur par defaut de la colonne"
+                        value={valeurColonne}
+                        onChange={this.onChangeValeurColonne}
+                        disabled={this.state.disabled}
+                      />
+                      </Modal>
 
-        
-        <AttributesTable 
-          map ={this.props.store.map} 
-          layer = {this.props.store.layersTree.slectedMapLayer} 
-          featuresProperties={this.object}
-        />
-        <Button type="primary"onClick={this.showModal} >
-          Ajouter colonne
-        </Button>
+                      
+                      <AttributesTable 
+                        map ={this.props.store.map} 
+                        layer = {this.props.store.layersTree.slectedMapLayer} 
+                        featuresProperties={this.object}
+                      />
+                      <Button type="primary"onClick={this.showModal} >
+                        Ajouter colonne
+                      </Button>
         </Drawer>
-      </div>
     );
     
   }

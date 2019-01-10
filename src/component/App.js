@@ -7,15 +7,18 @@ import ToolBar from "./ToolBar";
 import Footer from "./Footer";
 import SymbologyPanel from "./SymbologyPanel";
 import AttributesTablePanel from "./AttributesTablePanel";
+import { log } from 'util';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.ChangeSymbologyPanelState = this.ChangeSymbologyPanelState.bind(this);
+    this.ChangeAttrTablePanelState = this.ChangeAttrTablePanelState.bind(this);
 
     this.state ={
         ShowSymbologyPanel:false,
+        ShowAttrTablePanel:false,
     };
   }
 
@@ -25,8 +28,22 @@ export default class App extends React.Component {
         ShowSymbologyPanel:false,
       });
     } else {
+      console.log("sfsdfsdf");
+      
       this.setState({
         ShowSymbologyPanel:!this.state.ShowSymbologyPanel,
+      });
+    }
+  }
+
+  ChangeAttrTablePanelState(){
+    if(this.props.store.layersTree.slectedMapLayer.name == "sketch"){
+      this.setState({
+        ShowAttrTablePanel:false,
+      });
+    } else {
+      this.setState({
+        ShowAttrTablePanel:!this.state.ShowAttrTablePanel,
       });
     }
   }
@@ -36,24 +53,32 @@ export default class App extends React.Component {
       <Layout 
         className="root">
           <Header  {...this.props}/>
-          <Layout className="root"
+          <Layout className="root" id="content"
            hasSider={true}>
-               <LayerBar {...this.props}/>
+                <LayerBar {...this.props}/>
                 <MapPanel {...this.props}/>
                 <Drawer
-            width={"40%"}
-            destroyOnClose={true}
-            placement="right"
-            closable={true}
-            onClose={this.ChangeSymbologyPanelState}
-            visible={this.state.ShowSymbologyPanel}>
+                  width={"40%"}
+                  destroyOnClose={true}
+                  placement="right"
+                  closable={true}
+                  onClose={this.ChangeSymbologyPanelState}
+                  visible={this.state.ShowSymbologyPanel}>
               
-              <SymbologyPanel action={this.ChangeSymbologyPanelState} {...this.props}/>
+                      <SymbologyPanel action={this.ChangeSymbologyPanelState} {...this.props}/>
           
-          </Drawer>
-          <ToolBar action={this.ChangeSymbologyPanelState}/>
-          <AttributesTablePanel {...this.props}/>
+                </Drawer>
+                <AttributesTablePanel 
+                  {...this.props}
+                  onClose={this.ChangeAttrTablePanelState}
+                  visible={this.state.ShowAttrTablePanel}/>
+                <ToolBar 
+                  {...this.props}
+                    onSymblogyIconClicked={this.ChangeSymbologyPanelState}
+                    onAttrTableIconClicked={this.ChangeAttrTablePanelState}
+                />
           </Layout>
+          <Footer/>
       </Layout>
     );
   }

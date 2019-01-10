@@ -1,19 +1,28 @@
 import React from 'react';
 import { Layout } from 'antd';
+import { log } from 'util';
 
 
 export default class Footer extends React.Component {
 
-  componentDidMount() {
-  
+  constructor(props){
+    super(props)
+   
+
     
   }
+
+ 
+
+  
 
   render() {
     const FooterContainer  = Layout.Footer;
     return(
         <FooterContainer className="footer">
-            this is the Footer of the App
+             <div id="mousePositionContainer">
+                      <span id="mouse-position"></span>
+             </div>
         </FooterContainer>
     );
   }

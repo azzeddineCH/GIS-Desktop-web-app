@@ -2,7 +2,8 @@ import React  from 'react';
 
 import { Button , Icon,Divider} from 'antd';
 import { ToggleGroup,DigitizeButton } from "@terrestris/react-geo"
-
+import { ScaleCombo } from '@terrestris/react-geo';
+import { Fill, Stroke, Style} from 'ol/style.js';
 
 
 export default class MapLayerTools extends React.Component {
@@ -10,6 +11,7 @@ export default class MapLayerTools extends React.Component {
     super(props);
   }
   render() {    
+    
     return(
                     <ToggleGroup
                        className="MapLayerTools">
@@ -40,6 +42,7 @@ export default class MapLayerTools extends React.Component {
                                 map={this.props.map}
                                 drawType={this.props.drawType}
                                 type="dashed"
+                                drawStyle = {this.props.drawStyle}
                         >
                            <Icon type="radar-chart" />
                             Draw {" "+this.props.drawType}
@@ -52,6 +55,7 @@ export default class MapLayerTools extends React.Component {
                                 map={this.props.map}
                                 editType="Edit"
                                 type="dashed" 
+                                drawStyle = {this.props.drawStyle}
                         >
                       <Icon type="edit" />
                             Edit Feature
@@ -64,6 +68,7 @@ export default class MapLayerTools extends React.Component {
                                 map={this.props.map}
                                 editType="Delete"
                                 type="dashed" 
+                                drawStyle = {this.props.drawStyle}
                         >
                             <Icon type="delete" />
                               Delete Feature
@@ -73,11 +78,14 @@ export default class MapLayerTools extends React.Component {
                             className = "hidedButton"
                             name="addtopology"
                             type="dashed"    
+                            disabled={this.props.disabled}
                             onClick={this.props.onAddTopologyClicked}>
-                      <Icon type="fund" />
+                      <Icon type="build" />
                             Add New Topology
                         </Button>
-                        </ToggleGroup>
+                        
+                  </ToggleGroup>
+            
             );
         }
     }
