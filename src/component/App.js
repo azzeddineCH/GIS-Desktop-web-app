@@ -78,7 +78,7 @@ export default class App extends React.Component {
                     onAttrTableIconClicked={this.ChangeAttrTablePanelState}
                 />
           </Layout>
-          <Footer/>
+          <Footer {...this.props}/>
       </Layout>
     );
   }
