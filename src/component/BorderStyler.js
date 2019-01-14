@@ -29,11 +29,7 @@ export default class BorderStyler extends React.Component {
         });
         console.log(`checked = ${e.target.checked}`);
         if(!e.target.checked){
-            var borderStyle = new Stroke({
-                    color: "rgba(0, 0, 255, 0.1)",
-                    width: 0,
-                    lineDash:[0,0],
-            });
+            var borderStyle = null;
             this.props.action(borderStyle);
         }
     }

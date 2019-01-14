@@ -73,6 +73,7 @@ export default class SymbologyHandler extends React.Component {
                 }
             })
             for (var i=0; i<columns.length; i++) {
+                if(columns[i].title!="ID" && columns[i].title!="geometry")
                 options.push(<Option  
                                 key ={columns[i].key} 
                                 value={columns[i].title}>
@@ -198,7 +199,7 @@ export default class SymbologyHandler extends React.Component {
                         rowSelection={rowSelection} 
                         columns={columns} 
                         dataSource={this.state.data} 
-                        pagination={{ pageSize: 3 }} />
+                        pagination={{ pageSize: 2 }} />
 
                 <div className="flex_div">
                     <Button type="primary" onClick = {this.onAdd} >Add</Button>
@@ -213,7 +214,7 @@ export default class SymbologyHandler extends React.Component {
             </div>   
                 
                 
-                :<h1>No features</h1>
+                :<h1 className="panel_title">No features</h1>
             
            
         );

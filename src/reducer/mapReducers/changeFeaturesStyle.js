@@ -6,6 +6,11 @@ export default function changeFeaturesStyle(state, action){
     const {layerName, layerType, colorscale, data} = action  ;
 
     var Map = Object.assign( Object.create( Object.getPrototypeOf(state)), state);
+
+    var fillStyle = Map.getLayers().getArray().filter(element=>{
+        return element.getProperties().name == layerName;
+    })[0].getStyle();
+
     if(data!==null) 
         Map.getLayers().forEach(element => {
             
@@ -23,12 +28,13 @@ export default function changeFeaturesStyle(state, action){
                                     var style = new Style({
                                         stroke: new Stroke({
                                             color : colorscale[i],
+                                            width : 3,
                                         }),
-                                        fill: new Fill(),
+                                        fill: null,
                                     });
                                 else if(layerType==="Polygon")
                                     var style = new Style({
-                                        stroke: new Stroke(),
+                                        stroke: fillStyle instanceof Style ? fillStyle.getStroke() : null,
                                         fill: new Fill({
                                             color : colorscale[i],
                                         }),

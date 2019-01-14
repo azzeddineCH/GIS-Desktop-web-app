@@ -65,7 +65,7 @@ export default class NewTopology extends React.Component {
 
                 }
             }  
-        
+          this.props.onMapLayersAddTopology(TopologyName,"default");
           this.Cancel();
         }
       }  

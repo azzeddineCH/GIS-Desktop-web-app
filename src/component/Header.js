@@ -35,12 +35,17 @@ export default class Header extends React.Component {
     return(
       <Header id="header">
             <h2 id="projectTitle">SIGA Project</h2>
-      { this.props.store.map ?
+      {  
+         this.props.store.map ?
               this.props.store.layersTree.mapLayers.map(element => {
                     if(element.name == this.props.store.layersTree.slectedMapLayer.name )
                     return(
                       <MapLayerTools
-                            disabled={this.props.store.layersTree.slectedMapLayer.name == "sketch" ? true : false}
+                           // disabled={this.props.store.layersTree.slectedMapLayer.name == "sketch" ? true : false}
+            
+                       //    disabled={((this.props.store.layersTree.slectedMapLayer.name== "sketch") && (this.props.store.layersTree.slectedMapLayer.type == "default")) ? true : false}  
+                            disabled={(this.props.store.layersTree.slectedMapLayer.name == "sketch" || this.props.store.layersTree.slectedMapLayer.type =="default") ? true : false}
+                            disabledtopo={this.props.store.layersTree.slectedMapLayer.name == "sketch"? true : false}
                             layerName={element.name}
                             map={this.props.store.map}
                             drawType={element.type}
@@ -50,7 +55,8 @@ export default class Header extends React.Component {
                             drawStyle = {this.props.store.layersTree.mapLayers.filter((e) => e.name == element.name)[0].getStyle()}
                       />
                   )})
-       : ''
+                 
+       : '' 
       }
         <NewLayerDialog
                  {...this.props}

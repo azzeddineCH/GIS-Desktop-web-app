@@ -82,6 +82,7 @@ export default class LayerBar extends React.Component {
            id="mapTopologyLayersCard">
             { this.props.store.map ? 
                           <MapTopologyLayersTree
+                            onLayerClicked={this.handleLayerClick}
                             map={this.props.store.map}/>:
                             this.renderSkeleton(6)
             }
