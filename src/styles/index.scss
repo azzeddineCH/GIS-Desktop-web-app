@@ -59,7 +59,7 @@ body {
 
 #upload{
     position: absolute;
-    margin: 40vh 10vw;
+    margin: 40vh 15vw;
     align-items: center;
     width: 50%;
     &>*{
@@ -107,14 +107,10 @@ body {
 
 
 #mapEllememts{
-  background: #fefefe;
+   background: red;
    box-shadow: 0 10px px rgba(0,0,0,0.3);
-  .ellementsTree{
-
-      max-height: 50%;
-
-  }
-  
+   overflow-y: scroll;
+   height: 100vh;
 }
 
 .hidedButton{
@@ -178,7 +174,6 @@ body {
 .toggleButton {
     padding: 5px;
     border: 1px solid #DFE8F3;
-    //margin: 5px;
     font-size: 12px;
     width: 200px;
     border-radius: 4px;
