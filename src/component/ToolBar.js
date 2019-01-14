@@ -9,8 +9,8 @@ export default class ToolBar extends React.Component {
     const ToolBarContainer  = Layout.Sider;
 
     const data = [
-      <Button className = "hidedButton"    disabled={this.props.store.layersTree.slectedMapLayer.name == "sketch" ? true : false} onClick={this.props.onAttrTableIconClicked}><Icon type="table"  className="tools"/></Button>,
-      <Button className = "hidedButton"   disabled={this.props.store.layersTree.slectedMapLayer.name == "sketch" ? true : false} onClick={this.props.onSymblogyIconClicked}><Icon type="highlight"   className="tools"/></Button>
+      <Button className = "hidedButton"    disabled={(this.props.store.layersTree.slectedMapLayer.name == "sketch" || this.props.store.layersTree.slectedMapLayer.type =="default") ? true : false} onClick={this.props.onAttrTableIconClicked}><Icon type="table"  className="tools"/></Button>,
+      <Button className = "hidedButton"   disabled={(this.props.store.layersTree.slectedMapLayer.name == "sketch" || this.props.store.layersTree.slectedMapLayer.type =="default") ? true : false}><Icon type="highlight"   className="tools"/></Button>
       
     ];
     return(

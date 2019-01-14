@@ -13,8 +13,8 @@ export default class MapTopologyLayersTree extends React.Component {
           <LayerTree
             showLine={true}
             checkable={true}
-            disable={true}
-           // onSelect={this.props.onLayerClicked}
+            //disable={true}
+             onSelect={this.props.onLayerClicked}
            // onSelect={} 
             map={this.props.map}
             filterFunction={(layer) =>  layer.get('toponame') =='topology' }
