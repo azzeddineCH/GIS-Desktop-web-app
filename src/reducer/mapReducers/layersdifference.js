@@ -55,8 +55,8 @@ export default function layersdifference(state,TopologyName,Firstname,FirstId,Se
         const intersectGeom = OverlayOp.difference(geom, otherGeom);
         newFeature.setGeometry(parser.write(intersectGeom));
          
-      if (newFeature.getGeometry().getCoordinates().length>0)
-       {
+    
+       
         var layer = new VectorLayer({
         TopologyName,
         source: new VectorSource({
@@ -66,11 +66,7 @@ export default function layersdifference(state,TopologyName,Firstname,FirstId,Se
        layer.set("name",TopologyName);
        layer.set("toponame","topology");
        newMap.addLayer(layer)
-       }
-       else 
-       {
-        message.error('difference result is empty'); 
-       }
+      
        return newMap 
 
 }

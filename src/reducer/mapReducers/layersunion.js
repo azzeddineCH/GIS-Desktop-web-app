@@ -55,8 +55,7 @@ export default function layersunion(state,TopologyName,Firstname,FirstId,Secondn
         const intersectGeom = OverlayOp.union(geom, otherGeom);
         newFeature.setGeometry(parser.write(intersectGeom));
          
-      if (newFeature.getGeometry().getCoordinates().length>0)
-       {
+     
         var layer = new VectorLayer({
         TopologyName,
         source: new VectorSource({
@@ -66,11 +65,7 @@ export default function layersunion(state,TopologyName,Firstname,FirstId,Secondn
        layer.set("name",TopologyName);
        layer.set("toponame","topology");
        newMap.addLayer(layer)
-       }
-       else 
-       {
-        message.error('Union result is empty'); 
-       }
+       
        return newMap 
 
 }
