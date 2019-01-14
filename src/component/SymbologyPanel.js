@@ -15,8 +15,12 @@ export default class SymbologyPanel extends React.Component {
         super(props);
         this.state ={
             layerName : this.props.store.layersTree.slectedMapLayer.name,
-            borderstyle : new Stroke(),
-            fillstyle : new Fill(),
+            borderstyle : new Stroke({
+                color : 'rgba(154, 26, 56, 0.8)',
+            }),
+            fillstyle : new Fill({
+                color : 'rgba(154, 26, 56, 0.5)',
+            }),
             colorscale: DEFAULT_SCALE,
             data : null ,
         };
@@ -54,9 +58,14 @@ export default class SymbologyPanel extends React.Component {
 
     onApplyButtonClicked(){
 
+        var fillStyle = this.props.store.map.getLayers().getArray().filter(element=>{
+            return element.getProperties().name == this.state.layerName;
+        })[0].getStyle();
+
+        console.log("the fill style is" + fillStyle);
         var style = new Style({
             stroke: this.state.borderstyle,
-            fill: this.state.fillstyle,
+            fill: fillStyle instanceof Style ? fillStyle.getFill() : this.state.fillstyle,
             image: null
           });
 
@@ -76,10 +85,12 @@ export default class SymbologyPanel extends React.Component {
     return(
         
         <Content id="symbologypanel">
-            <h1 className="panel_title">Symbology</h1>
-            <h3 className="panel_text"> Layer : {this.state.layerName}</h3>
-            <SymbologyHandler {...this.props} action={this.onFeaturesStyleChanged}/>
-            {this.props.store.layersTree.slectedMapLayer.type=="Point" ? null : <BorderStyler  action ={this.onBorderStyleChanged}/>}
+            <div>
+                <h1 className="panel_title">Symbology</h1>
+                <h3 className="panel_text"> Layer : {this.state.layerName}</h3>
+                <SymbologyHandler {...this.props} action={this.onFeaturesStyleChanged}/>
+                {this.props.store.layersTree.slectedMapLayer.type=="Polygon" ? <BorderStyler  action ={this.onBorderStyleChanged}/> : null}
+            </div>
             <div className="flex_div"
                 style={{
                     position: 'absolute',

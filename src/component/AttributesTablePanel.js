@@ -118,7 +118,7 @@ export default class AttributesTablePanel extends React.Component {
           width={640}
           title="Table Attributaire"
           placement="right"
-          closable={true}
+          closable={false}
           onClose={this.props.onClose}
           visible={this.props.visible}
         >
