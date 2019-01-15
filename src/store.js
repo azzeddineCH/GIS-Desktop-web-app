@@ -12,6 +12,10 @@ const defaultLayer = new MapLayerObject("sketch","Polygon")
 
 const featuresProperties = defaultLayer.getFeatureProperties()
 
+const currentFeature = defaultLayer.getCurrentFeature()
+
+const Feat =defaultLayer.getFeatures();
+
 export const defaultState ={
    map: null,
    layersTree:{
@@ -20,6 +24,8 @@ export const defaultState ={
    },
    newLayerDialogState: false,
    featurePropertiesObject:featuresProperties,
+   currentFeature: currentFeature,
+   features:Feat,
   };
 
 

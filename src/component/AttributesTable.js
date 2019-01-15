@@ -1,6 +1,7 @@
 import React  from 'react';
 import { FeatureGrid } from "@terrestris/react-geo"
 import { Input} from 'antd';
+import { runInThisContext } from 'vm';
 
 
 
@@ -8,6 +9,11 @@ export default class AttributesTable extends React.Component {
     constructor(props) {
       super(props);
       this.AttributesTable=props.featuresProperties
+      this.currentFeature=props.currentFeature
+      this.features=props.features
+      this.onFeatureRowClick=this.onFeatureRowClick.bind(this)
+      
+      
     }
 
     addProperty(key,value){
@@ -34,12 +40,13 @@ export default class AttributesTable extends React.Component {
         const newFeatures =features.map((feature)=>{
             this.addProperty('id',id)
             this.addProperty('Nom','Nom'+id)
-            //this.addProperty('Measure',this.getMeasure(feature))
-            feature.setProperties(this.AttributesTable);
+            this.addProperty('measure',this.getMeasure(feature))
+            feature.setProperties(this.props.featuresProperties);
             id++
-
+            this.features.push(feature)
             return feature
         })
+        
         return newFeatures
     }
     
@@ -49,10 +56,8 @@ export default class AttributesTable extends React.Component {
     }
 
     getColumnDefs(){
-
-  
-        var columns = this.getFeatures()[0].getKeys().map((element)=>{
-            if (element=='id'|| element=='Measure'){
+        var columns = this.props.features[0].getKeys().map((element)=>{
+            if (element=='id'|| element=='measure'|| element=='surface'){
                 return{
                     key: element,
                     title:element,
@@ -62,10 +67,7 @@ export default class AttributesTable extends React.Component {
             else  return{
                     key: element,
                     title:element,
-                    render:text=> <Input
-                        defaultValue={text}
-                        style={{ width: '90%', marginRight: '3%' }}
-                    />
+                    render:text=> <p>{text}</p>
                 }
             })
             var result = {};
@@ -77,8 +79,16 @@ export default class AttributesTable extends React.Component {
         return result
     }
 
-    render() {  
+    onFeatureRowClick(item){
+        const { id } = item;
+        var feature = this.getFeatures()[id-1];
+        this.currentFeature=feature
+        this.props.onTableFeatureSelected(this.currentFeature)
+    }
     
+ 
+    render() {  
+
         return(
                 <div>
                     {this.getFeatures().length>0 ?                  
@@ -89,6 +99,7 @@ export default class AttributesTable extends React.Component {
                         selectable={true}
                         layerName ={this.props.layer.name}
                         columnDefs={this.getColumnDefs()}
+                        onRowClick={this.onFeatureRowClick}
                     />:
                 ""}
 
