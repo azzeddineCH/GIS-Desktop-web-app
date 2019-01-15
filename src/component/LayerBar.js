@@ -44,7 +44,7 @@ export default class LayerBar extends React.Component {
     const Sider  = Layout.Sider;
     const bodyStyle = {
       overflowY: 'scroll',
-      height: "33vh",
+      minHeight: "33vh",
     }
     return(
       <Sider id='mapEllememts' width="15%">
@@ -57,10 +57,11 @@ export default class LayerBar extends React.Component {
                           <MapLayersTree
                             onLayerClicked={this.handleLayerClick}
                             map={this.props.store.map}/>:
-                            this.renderSkeleton(5)
+                            this.renderSkeleton(6)
             }
           </Card> 
           <Card 
+          bodyStyle={bodyStyle}
            title="Layer Features"
            className="ellementsTree"
            id="mapLayerFeaturesCard">
@@ -71,7 +72,7 @@ export default class LayerBar extends React.Component {
                            features={this.props.store.map.getLayers().getArray().filter(element=>{
                                     return element.getProperties().name == this.props.store.layersTree.slectedMapLayer.name
                                     })[0].getSource().getFeatures()}
-                        />:  this.renderSkeleton(5)
+                        />:  this.renderSkeleton(6)
             }
            </Card> 
            <Card 
@@ -83,7 +84,7 @@ export default class LayerBar extends React.Component {
                           <MapTopologyLayersTree
                             onLayerClicked={this.handleLayerClick}
                             map={this.props.store.map}/>:
-                            this.renderSkeleton(20)
+                            this.renderSkeleton(6)
             }
           </Card> 
       </Sider>
