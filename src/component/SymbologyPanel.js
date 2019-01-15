@@ -89,7 +89,7 @@ export default class SymbologyPanel extends React.Component {
                 <h1 className="panel_title">Symbology</h1>
                 <h3 className="panel_text"> Layer : {this.state.layerName}</h3>
                 <SymbologyHandler {...this.props} action={this.onFeaturesStyleChanged}/>
-                {this.props.store.layersTree.slectedMapLayer.type=="Polygon" ? <BorderStyler  action ={this.onBorderStyleChanged}/> : null}
+                {this.props.store.layersTree.slectedMapLayer.type=="Point" ? null : <BorderStyler {...this.props} action ={this.onBorderStyleChanged}/>}
             </div>
             <div className="flex_div"
                 style={{
