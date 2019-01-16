@@ -14,17 +14,12 @@ export default class MapLayerFeaturesTree extends React.Component {
         <div>
             <FeatureGrid
               size={"small"}
-
               featureStyle = {this.props.map.getLayers().getArray().filter(ele=>{
                 return(ele.get("name")==this.props.layer.name)
               })[0].getStyle()}
               attributeBlacklist={['id']}
               showHeader={false}
-              features={this.props.features.map((feature,index)=>{
-                feature.set("ID",index);
-                return feature
-                      })
-              }
+              features={this.props.features}
               map={this.props.map}
               scroll={{ x: 0, y: 300 }}
               pagination={false}

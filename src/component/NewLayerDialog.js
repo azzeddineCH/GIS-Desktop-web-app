@@ -66,6 +66,9 @@ export default class NewLayerDialog extends React.Component {
           visible={this.props.store.newLayerDialogState}
           onOk={this.handleSubmit}
           onCancel={this.handleCancel}
+          okButtonProps={{
+            disabled: (this.state.layerName == "")
+          }}
         >
             <span>
                     <Input

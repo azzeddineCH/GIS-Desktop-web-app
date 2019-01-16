@@ -10,6 +10,9 @@ import layersdifference from './layersdifference'
 import deleteMapLayer from "./deleteMapLayer";
 import changeLayerStyle from "./changeLayerStyle";
 import changeFeaturesStyle from './changeFeaturesStyle';
+import addMapFeatureProperty from './addMapFeatureProperty';
+import modifyMapFeatureProperty from './modifyMapFeatureProperty';
+import deleteMapFeatureProperty from './deleteMapFeatureProperty';
 
 
 export default function mapReducer(state= defaultState.map, action){
@@ -23,12 +26,24 @@ switch (type) {
     case "DELETE_MAP":
         return deleteMap(state,action)
 
+    case "ADD_MAP_FEATURE_PROPERTY":
+        return addMapFeatureProperty(state,action)
+    
+    case "MODIFY_MAP_FEATURE_PROPERTY":
+        return modifyMapFeatureProperty(state,action)
+    
+    case "DELETE_MAP_FEATURE_PROPERTY":
+        return deleteMapFeatureProperty(state,action)
+
     case "INTERSECT" :
         return layersintersection(state,action.TopologyName,action.FirstFeaturelayername,action.FirstFeatureId,action.SecondFeaturelayername,action.SecondFeatureId)
+    
     case "UNION" :
         return layersunion(state,action.TopologyName,action.FirstFeaturelayername,action.FirstFeatureId,action.SecondFeaturelayername,action.SecondFeatureId)
+    
     case "DIFF" :
         return layersdifference(state,action.TopologyName,action.FirstFeaturelayername,action.FirstFeatureId,action.SecondFeaturelayername,action.SecondFeatureId)
+    
     case "SEMIDIFF" :
         return layersSemidifference(state,action.TopologyName,action.FirstFeaturelayername,action.FirstFeatureId,action.SecondFeaturelayername,action.SecondFeatureId)
   

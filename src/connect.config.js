@@ -16,6 +16,9 @@ import onMapLayersDiff from './action/onMapLayersDiff';
 import onMapLayersSemiDiff from './action/onMapLayersSemiDiff';
 import onMapLayersUnion from './action/onMapLayersUnion';
 import onMapLayersAddTopology from  './action/onMapLayersAddTopology';
+import onAttributeTableColumnAdded from  './action/onAttributeTableColumnAdded';
+import onAttributeTableColumnModified from  './action/onAttributeTableColumnModified';
+import onAttributeTableColumnDeleted from  './action/onAttributeTableColumnDeleted';
 
 
 /**
@@ -40,6 +43,9 @@ function mapDispatchToProps(dispatcher){
         onLayerStyleChanged,
         onFeaturesStyleChanged,
         onMapLayersAddTopology,
+        onAttributeTableColumnAdded,
+        onAttributeTableColumnModified,
+        onAttributeTableColumnDeleted
     },dispatcher);
 }
 

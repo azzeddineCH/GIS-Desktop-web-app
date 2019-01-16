@@ -28,7 +28,6 @@ export default class App extends React.Component {
         ShowSymbologyPanel:false,
       });
     } else {
-      console.log("sfsdfsdf");
       
       this.setState({
         ShowSymbologyPanel:!this.state.ShowSymbologyPanel,

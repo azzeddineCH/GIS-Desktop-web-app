@@ -205,3 +205,15 @@ body {
     font-size: 20px
   }
 }
+.featuresPropertiesContainer{
+  max-height: 40vh;
+  overflow-y: scroll;
+}
+
+#attrTableOperContainer{
+  margin: 20px auto;
+  justify-content: space-around;
+  display: flex;
+
+}
+

@@ -7,12 +7,11 @@ import { Input} from 'antd';
 export default class AttributesTable extends React.Component {
     constructor(props) {
       super(props);
-      this.AttributesTable=props.featuresProperties;
+      this.getColumnDefs = this.getColumnDefs.bind(this);
+  
     }
 
-    addProperty(key,value){
-        this.AttributesTable[key]=value;
-    }
+    
 
     getMeasure(feature){
         var geo =feature.getGeometry()
@@ -24,56 +23,29 @@ export default class AttributesTable extends React.Component {
         }
     }
     
-    getFeatures(){
-       const features= this.props.map.getLayers().getArray().filter(element=>{
-           console.log(element.getProperties().name)
+   
+    getColumnDefs(){
+        
+        var mapFeatures = this.props.map.getLayers().getArray().filter(element=>{
             return element.getProperties().name == this.props.layer.name
         })[0].getSource().getFeatures()
-        
-        var id=1;  
-        const newFeatures =features.map((feature)=>{
-            this.addProperty('id',id)
-            this.addProperty('Nom','Nom'+id)
-            //this.addProperty('Measure',this.getMeasure(feature))
-            feature.setProperties(this.AttributesTable);
-            id++
 
-            return feature
-        })
-        return newFeatures
-    }
-    
-    modifyFeature(feature,columnName,newValue){
-        this.addProperty(columnName,newValue)
-        feature.setProperties(this.AttributesTable);
-    }
-
-    getColumnDefs(){
-
-  
-        var columns = this.getFeatures()[0].getKeys().map((element)=>{
-            if (element=='id'|| element=='Measure'){
+        var columns = mapFeatures[0].getKeys().map((element)=>{
+          
                 return{
                     key: element,
                     title:element,
-                    render:val => Math.round(val)
-                }
-            }
-            else  return{
-                    key: element,
-                    title:element,
-                    render:text=> <Input
-                        defaultValue={text}
-                        style={{ width: '90%', marginRight: '3%' }}
-                    />
-                }
-            })
-            var result = {};
-            for (var i=0; i<columns.length; i++) {
+                    render: val => (typeof val == "string") ? <span>{val}</span> : <span>{Math.round(val)}</span>
+                }   
+        })
+        
+        var result = {};
+        for (var i=0; i<columns.length; i++) {
               result[columns[i].key] = {
                   title:columns[i].title,
                   render:columns[i].render};
             }
+        
         return result
     }
 
@@ -81,14 +53,20 @@ export default class AttributesTable extends React.Component {
     
         return(
                 <div>
-                    {this.getFeatures().length>0 ?                  
+                    {this.props.map.getLayers().getArray().filter(element=>{
+                                 return element.getProperties().name == this.props.layer.name
+                             })[0].getSource().getFeatures().length>0 ?                  
                        <FeatureGrid
-                        features= {this.getFeatures()}
-                        map={this.props.map}
-                        zoomToExtent={true}
-                        selectable={true}
-                        layerName ={this.props.layer.name}
-                        columnDefs={this.getColumnDefs()}
+                            features= {this.props.map.getLayers().getArray().filter(element=>{
+                                                 return element.getProperties().name == this.props.layer.name
+                                        })[0].getSource().getFeatures()}
+                            map={this.props.map}
+                            zoomToExtent={false}
+                            selectable={false}
+                            layerName ={this.props.layer.name}
+                            bordered
+                            columnDefs={this.getColumnDefs()}
+                    
                     />:
                 ""}
 

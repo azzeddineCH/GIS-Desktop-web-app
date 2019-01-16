@@ -1,165 +1,164 @@
-import { Select, Icon, Input,Modal,Drawer, Button } from 'antd';
 import React  from 'react';
 import AttributesTable from './AttributesTable'
+import AddAttributeTableColumnDialog from './AddAttributeTableColumnDialog'
+import ModifyAttributeTableColumnDialog from './ModifyAttributeTableColumnDialog'
+import DeleteAttributeTableColumnDialog from './DeleteAttributeTableColumnDialog'
+import { message ,Drawer, Button } from 'antd';
+import { log } from 'util';
 
 export default class AttributesTablePanel extends React.Component {
   
   constructor(props) {
     super(props);
-    this.object = this.props.store.featurePropertiesObject
-    this.showDrawer=this.showDrawer.bind(this)
-    this.onClose=this.onClose.bind(this)
-    this.showModal=this.showModal.bind(this)
-    this.handleOk=this.handleOk.bind(this)
-    this.handleCancel=this.handleCancel.bind(this)
-    this.onChangeNomColonne=this.onChangeNomColonne.bind(this)
-    this.onChangeValeurColonne=this.onChangeValeurColonne.bind(this)
-    this.handleColumnTypeChange=this.handleColumnTypeChange.bind(this)
+
+    this.state = { 
+      addColumnDialogState:false,
+      deleteColumnDialogState:false,
+      modifyColumnDialogState:false,
+     };
+
+    this.onColumnAdded=this.onColumnAdded.bind(this)
+    this.onColumnModified=this.onColumnModified.bind(this)
+    this.onColumnDeleted=this.onColumnDeleted.bind(this)
+    this.onColumnOperationDialogCancelled=this.onColumnOperationDialogCancelled.bind(this)
+    this.onAddColumnClicked=this.onAddColumnClicked.bind(this)
+    this.onModifyColumnClicked=this.onModifyColumnClicked.bind(this)
+    this.onDeleteColumnClicked=this.onDeleteColumnClicked.bind(this)
   }
   
-  state = { 
-    visible: false,
-    visible2:false,
-    nomColonne: '',
-    valeurColonne:'',
-    columnType: "mesure",
-    disabled:true
-   };
-   
-  showDrawer = () => {
-    this.setState({
-      visible: true,
-      visible2:false
-    });
-  };
-
-  onClose = () => {
-    this.setState({
-      visible: false,
-    });
-  };
-
-  showModal = () => {
-    this.setState({
-      visible2: true,
-    });
+  onColumnAdded(columnName,columnDefaultValue){
+  
+      this.props.onAttributeTableColumnAdded(
+        this.props.store.layersTree.slectedMapLayer.name,
+        { columnName ,columnDefaultValue}
+      )
+      
   }
 
-  handleOk = (e) => {
-    console.log(e);
-    console.log(this.object)
+  onColumnModified(layerName,columnName,columnNewValues){
+  
+    
+    this.props.onAttributeTableColumnModified(layerName,{ columnName, columnNewValues })
+    
+}
+
+  onColumnDeleted(layerName,columnName){
+    this.props.onAttributeTableColumnDeleted(layerName,columnName)
+  }
+
+  onModifyColumnClicked(){
+
+    var features = this.props.store.map.getLayers().getArray().filter(element=>{
+      return element.getProperties().name == this.props.store.layersTree.slectedMapLayer.name
+    })[0].getSource().getFeatures();
+    
+    if(features.length == 0){  message.error('Draw at least one feature'); return} 
+    if(features[0].getKeys().length == 2){  message.error('Add at least one column'); return} 
+
+
     this.setState({
-      visible2: false,
-    });
-    if (this.state.columnType=='Measure'){
-      if (this.state.nomColonne!='') this.addProperty(this.state.nomColonne,0)
-    }
-    else{
-      if (this.state.nomColonne!=''&& this.state.valeurColonne!='') this.addProperty(this.state.nomColonne,this.state.valeurColonne)
-    }
-    console.log('dooone')
+      ...this.state,
+      modifyColumnDialogState: true
+    })
   }
 
-  handleCancel = (e) => {
-    console.log(e);
+  onDeleteColumnClicked(){
+    var features = this.props.store.map.getLayers().getArray().filter(element=>{
+      return element.getProperties().name == this.props.store.layersTree.slectedMapLayer.name
+    })[0].getSource().getFeatures();
+    
+    if(features.length == 0){  message.error('Draw at least one feature'); return} 
+    if(features[0].getKeys().length == 2){  message.error('Add at least one column'); return} 
+
+
     this.setState({
-      visible2: false,
-    });
+      ...this.state,
+      deleteColumnDialogState: true
+    })
   }
 
-  onChangeNomColonne = (e) => {
-    this.setState({ nomColonne: e.target.value });
+  onAddColumnClicked(){
+    var features = this.props.store.map.getLayers().getArray().filter(element=>{
+      return element.getProperties().name == this.props.store.layersTree.slectedMapLayer.name
+    })[0].getSource().getFeatures();
+    
+    if(features.length == 0){  message.error('Draw at least one feature'); return} 
+
+        this.setState({
+          ...this.state,
+          addColumnDialogState: true
+        })
+ 
   }
 
-  onChangeValeurColonne = (e) => {
-    this.setState({ valeurColonne: e.target.value });
-  }
-
-  handleColumnTypeChange(value){ 
-    if (value=='Mesure'){
+  onColumnOperationDialogCancelled(){
       this.setState({
-        disabled:true,
-        columnType: value
-      })
-    }else{
-      this.setState({
-        disabled:false,
-        columnType: value
-      })
-    } 
+        addColumnDialogState:false,
+        deleteColumnDialogState:false,
+        modifyColumnDialogState:false,
+          })
   }
-
-  addProperty(key,value){
-    this.object[key]=value
-  }
-
-  getColumns(){
-
-  }
-
-  getInputs(keys){
-    for (var i=0;i<keys.length ;i++){
-      return <input
-          defaultValue='aa'
-      />
-    }
-  }
-
   
   render() {
 
-    const { nomColonne } = this.state;
-    const { valeurColonne } = this.state;
-    const featureKeys = Object.keys(this.object)
-    
-    const Option = Select.Option;
     return (
         <Drawer
           width={640}
-          title="Table Attributaire"
+          title="Attribute table"
           placement="right"
-          closable={false}
+          closable={true}
           onClose={this.props.onClose}
           visible={this.props.visible}
         >
-
-                      <Modal
-                        title="Basic Modal"
-                        visible={this.state.visible2}
-                        onOk={this.handleOk}
-                        onCancel={this.handleCancel}
-                      >
-
-                      <Select 
-                        style={{ width: 120 }}
-                        onChange={this.handleColumnTypeChange}
-                        defaultValue={this.state.columnType}> 
-                                <Option value="Colonne personalisee">Colonne personalisee</Option>
-                                <Option value="mesure">mesure</Option>
-                      </Select>       
-                      <Input
-                        placeholder="Enter le nom de la colonne"
-                        value={nomColonne}
-                        onChange={this.onChangeNomColonne}
+              <div id="attrTableOperContainer">
+                  <Button type="primary" 
+                          onClick={this.onAddColumnClicked}
+                          >
+                                  Add Column
+                  </Button>
+                  <Button type="primary" 
+                          onClick={this.onModifyColumnClicked}
+                        >
+                                  Edit Column
+                  </Button>
+                  <Button type="primary" 
+                          onClick={this.onDeleteColumnClicked} 
+                          >
+                                  Delete Column
+                  </Button>
+              </div>
+                      {this.state.addColumnDialogState ?
+                          <AddAttributeTableColumnDialog
+                              visible={this.state.addColumnDialogState}
+                              onColumnAdded={this.onColumnAdded}
+                              onCancel={this.onColumnOperationDialogCancelled}
+                          />
+                          :""}
+                      {this.state.modifyColumnDialogState ?
+                          <ModifyAttributeTableColumnDialog
+                          visible={this.state.modifyColumnDialogState}
+                          onColumnModified={this.onColumnModified}
+                          map ={this.props.store.map} 
+                          layer = {this.props.store.layersTree.slectedMapLayer} 
+                          onCancel={this.onColumnOperationDialogCancelled}
+                        />
+                        :""}
+                   {this.state.deleteColumnDialogState ?
+                      <DeleteAttributeTableColumnDialog
+                          visible={this.state.deleteColumnDialogState}
+                          onColumnDeleted={this.onColumnDeleted}
+                          onCancel={this.onColumnOperationDialogCancelled}
+                          map ={this.props.store.map} 
+                          layer = {this.props.store.layersTree.slectedMapLayer} 
                       />
-                      <br /><br />
-                      <Input
-                        placeholder="Enter la valeur par defaut de la colonne"
-                        value={valeurColonne}
-                        onChange={this.onChangeValeurColonne}
-                        disabled={this.state.disabled}
-                      />
-                      </Modal>
-
+                      :""}
                       
                       <AttributesTable 
                         map ={this.props.store.map} 
                         layer = {this.props.store.layersTree.slectedMapLayer} 
-                        featuresProperties={this.object}
                       />
-                      <Button type="primary"onClick={this.showModal} >
-                        Ajouter colonne
-                      </Button>
+
+                      
         </Drawer>
     );
     
