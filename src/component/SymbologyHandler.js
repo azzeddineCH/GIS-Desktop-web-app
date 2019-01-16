@@ -14,7 +14,7 @@ export default class SymbologyHandler extends React.Component {
         const viridisColorscale = ['#fafa6e', '#9cdf7c', '#4abd8c', '#00968e', '#106e7c', '#2a4858'];
         this.state ={
             Layer : "1st layer",
-            selectedColumn : 'id',
+            selectedColumn : 'ID',
             colorScale : viridisColorscale,
             data : null,
             visibleDialog : false,
@@ -61,7 +61,7 @@ export default class SymbologyHandler extends React.Component {
         let options = [];
         const Option = Select.Option;
         var columns = this.getFeatures()[0].getKeys().map((element)=>{
-            if (element=='id'|| element=='Measure'){
+            if (element=='ID'|| element=='Measure'){
                 return{
                     key: element,
                     title:element,
@@ -73,7 +73,7 @@ export default class SymbologyHandler extends React.Component {
                 }
             })
             for (var i=0; i<columns.length; i++) {
-                if(columns[i].title!="ID" && columns[i].title!="geometry")
+                if(columns[i].title!="geometry")
                 options.push(<Option  
                                 key ={columns[i].key} 
                                 value={columns[i].title}>
@@ -188,7 +188,7 @@ export default class SymbologyHandler extends React.Component {
                 
                 <div> 
                 <div className="flex_div">
-                    <Select labelInValue defaultValue={{ key: 'id' }} style={{ width: 120 }} onChange={this.handleChange}>
+                    <Select labelInValue defaultValue={{ key: 'ID' }} style={{ width: 120 }} onChange={this.handleChange}>
                         {this.getColumns()}
                     </Select>
 

@@ -24,7 +24,7 @@ export default function changeFeaturesStyle(state, action){
                     i=0;
                     data.forEach(dataEle =>{
                         dataEle.ref.forEach(refEle =>{
-                            if(refEle.get('id')===ele.get('id')){
+                            if(refEle.get('ID')===ele.get('ID')){
                                 console.log(element);
                                 if(layerType==="LineString"){
                                     //if(strokeStyle instanceof Stroke) strokeStyle.setColor(colorscale[i]);
