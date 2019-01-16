@@ -11,6 +11,8 @@ export default function changeFeaturesStyle(state, action){
         return element.getProperties().name == layerName;
     })[0].getStyle();
 
+    var strokeStyle = fillStyle instanceof Style ? fillStyle.getStroke() : null
+
     if(data!==null) 
         Map.getLayers().forEach(element => {
             
@@ -24,14 +26,17 @@ export default function changeFeaturesStyle(state, action){
                         dataEle.ref.forEach(refEle =>{
                             if(refEle.get('id')===ele.get('id')){
                                 console.log(element);
-                                if(layerType==="LineString")
+                                if(layerType==="LineString"){
+                                    //if(strokeStyle instanceof Stroke) strokeStyle.setColor(colorscale[i]);
                                     var style = new Style({
                                         stroke: new Stroke({
                                             color : colorscale[i],
-                                            width : 3,
+                                            width : strokeStyle.getWidth(),
                                         }),
                                         fill: null,
                                     });
+                                }
+                                    
                                 else if(layerType==="Polygon")
                                     var style = new Style({
                                         stroke: fillStyle instanceof Style ? fillStyle.getStroke() : null,

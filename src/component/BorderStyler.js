@@ -100,15 +100,20 @@ export default class BorderStyler extends React.Component {
   
   render() {
 
+    const colors = (
+        <ColorPicker  
+        disabled = {this.state.disabled}
+        action = {this.onChangeColor}/>
+    );
+
     return(    
         <div  className="flex_div" style={{margin:20}}>
             <div className="flex_div">
                 <Checkbox 
                         onChange={this.onChangeCheckBox}>
                 Borders</Checkbox>
-                <ColorPicker  
-                    disabled = {this.state.disabled}
-                    action = {this.onChangeColor}/>
+                {this.props.store.layersTree.slectedMapLayer.type=="LineString" ? null : colors }
+
             </div> 
             <div>Size :</div>
             <InputNumber min={0} 
